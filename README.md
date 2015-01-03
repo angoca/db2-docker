@@ -1,6 +1,3 @@
-db2-dockers
-===========
-
 # Overview & links
 
 This image will download and install DB2 LUW Express-C.
@@ -22,7 +19,7 @@ The issue with a permanent link to IBM is that it is temporal.
 
 The image will just install DB2 and it will not create any DB2 instance.
 
-The [Docker file](https://github.com/angoca/db2-dockers/blob/master/10.5/Dockerfile.md)
+The [Docker file](https://github.com/angoca/db2-dockers/blob/master/10.5/Dockerfile)
 
 # How-to/usage
 
@@ -32,4 +29,4 @@ TODO Just pull this image, and DB2 will be installed in the container in:
 
 # Issues & contributions
 
-In you find any issue, please contact @angoca
+In you find any issue, please contact [@angoca](https://twitter.com/angoca)
