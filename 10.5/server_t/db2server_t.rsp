@@ -1,0 +1,6 @@
+PROD                      = DB2_SERVER_EDITION
+FILE                      = /opt/ibm/db2/V10.5
+LIC_AGREEMENT             = ACCEPT
+INSTALL_TYPE              = COMPACT
+COMP                      = APPLICATION_DEVELOPMENT_TOOLS
+
