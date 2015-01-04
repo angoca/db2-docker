@@ -20,8 +20,9 @@ The image will just install DB2 and it will not create any DB2 instance.
 
 List of Docker files:
 
-* [DB2 Express-C 10.5](https://github.com/angoca/db2-dockers/blob/master/10.5/expc/Dockerfile) (expc, latest).
-* [DB2 Enterprise server 10.5](https://github.com/angoca/db2-dockers/blob/master/10.5/server_t/Dockerfile) (server_t) trial for 30 days
+* [DB2 Express-C 10.5](https://github.com/angoca/db2-dockers/blob/master/install/10.5/expc/Dockerfile) (Install: expc, latest).
+* [DB2 Enterprise server 10.5](https://github.com/angoca/db2-dockers/blob/master/install/10.5/server_t/Dockerfile) (Install: server_t) trial for 30 days
+* [DB2 instance for Express-C](https://github.com/angoca/db2-dockers/blob/master/instance/expc/Dockerfile) (Instance: expc, latest).
 
 For the DB2 installation, a provided response file is used in each case.
 

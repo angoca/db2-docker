@@ -54,7 +54,8 @@ RUN cd /tmp/${DB2_INST_DIR} && \
   ./db2setup -r /tmp/${DB2_RESP_FILE} && \
   cat /tmp/db2setup.log && \
   cd && \
-  rm -Rf /tmp/${DB2_INST_DIR}
+  rm -Rf /tmp/${DB2_INST_DIR} && \
+  rm /tmp/${DB2_RESP_FILE}
 
 # Removes the cache of apt-get and the unnecessary packages.
 RUN apt-get purge -y aria2 && \
