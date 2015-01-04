@@ -1,4 +1,5 @@
-FROM ubuntu:last
+FROM ubuntu:14.03
+MAINTAINER Andres Gomez <angoca@yahoo.com>
 
 RUN dpkg --add-architecture i386 && \
   apt-get update && \
