@@ -11,16 +11,19 @@ The most recent version of DB2 LUW is 10.5,
  * [DB2 LUW](http://www.ibm.com/software/data/db2/)
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
 
-The binary is obtainer direclty from IBM; however, this link is temporal.
+The binary is obtained direclty from IBM; however, this link is temporal.
 You can change the URL for a public Dropbox:
 
  * [https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz](https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz)
 
 The image will just install DB2 and it will not create any DB2 instance.
 
-The [Docker file](https://github.com/angoca/db2-dockers/blob/master/10.5/Dockerfile)
+List of Docker files:
 
-For the DB2 installation, a provided response file is used.
+* [DB2 Express-C 10.5](https://github.com/angoca/db2-dockers/blob/master/10.5/expc/Dockerfile) (expc, latest).
+* [DB2 Enterprise server 10.5](https://github.com/angoca/db2-dockers/blob/master/10.5/server_t/Dockerfile) (server_t) trial for 30 days
+
+For the DB2 installation, a provided response file is used in each case.
 
 # How-to/usage
 
