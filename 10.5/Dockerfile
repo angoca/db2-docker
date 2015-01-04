@@ -1,4 +1,4 @@
-FROM ubuntu:14.03
+FROM ubuntu:14.04
 MAINTAINER Andres Gomez <angoca@yahoo.com>
 
 RUN dpkg --add-architecture i386 && \
@@ -10,9 +10,9 @@ RUN dpkg --add-architecture i386 && \
     libstdc++6-4.4-pic \
     lib32stdc++6
 
-RUN cd /tmp && \
-  aria2c -x 16 https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz \
-    | tar -xJC /tmp && \
-  cd expc && \
-  db2_install
+#RUN cd /tmp && \
+#  aria2c -x 16 https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz \
+#    | tar -xJC /tmp && \
+#  cd expc && \
+#  db2_install
 
