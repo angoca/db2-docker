@@ -12,7 +12,8 @@ MAINTAINER Andres Gomez <angoca@yahoo.com>
 # Set of variables to define the type of DB2 being installed.
 
 ## URL to download the installer. From IBM, but it has to be updated because the
-## link is temporal.
+## link is temporal. You can get a new valid link from
+## http://www.ibm.com/software/data/db2/express-c/download.html
 ENV DB2_BIN https://iwm.dhe.ibm.com/sdfdl/v2/regs2/db2pmopn/db2_v105/expc/Xa.2/Xb.aA_60_-i75MwL9JKb3_JnLkeDltZUdcgF5mlWmBo_g/Xc.db2_v105/expc/v10.5_linuxx64_expc.tar.gz/Xd./Xf.LPr.D1vk/Xg.7896296/Xi.swg-db2expressc/XY.regsrvs/XZ.USh1SRvgyXVOj1uqGuKpSQk2Sqg/v10.5_linuxx64_expc.tar.gz
 ## Name of the downloaded file.
 ENV DB2_INSTALLER v10.5_linuxx64_expc.tar.gz
