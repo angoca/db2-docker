@@ -14,7 +14,7 @@ The most recent version of DB2 LUW is 10.5,
 The binary is obtainer direclty from IBM; however, this link is temporal.
 You can change the URL for a public Dropbox:
 
- * https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz
+ * [https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz](https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz)
 
 The image will just install DB2 and it will not create any DB2 instance.
 
@@ -35,5 +35,7 @@ Remember that the installation does not include any instance nor database.
 
 # Issues & contributions
 
-In you find any issue, please contact [@angoca](https://twitter.com/angoca)
+In you find any issue, please contact [@angoca](https://twitter.com/angoca).
+Or create an issue at
+[https://github.com/angoca/db2-dockers/issues](https://github.com/angoca/db2-dockers/issues)
 
