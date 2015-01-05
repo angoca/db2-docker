@@ -1,6 +1,7 @@
 FILE                      = /opt/ibm/db2/V10.5
 INSTANCE                  = DB2_INST
 DB2_INST.NAME             = db2inst1
+DB2_INST.TYPE             = ESE 
 DB2_INST.PASSWORD         = db2inst1
 DB2_INST.UID              = 501
 DB2_INST.GID              = 501

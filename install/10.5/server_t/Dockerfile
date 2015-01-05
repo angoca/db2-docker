@@ -25,15 +25,17 @@ ENV DB2_INST_DIR server_t
 ENV DB2_VERSION 10.5.0.5
 ## Name of the response file included in the Docker image.
 ENV DB2_RESP_FILE db2server_t.rsp
+## Directory where DB2 is installed.
+ENV DB2_DIR /opt/ibm/db2/V10.5
 
 # Updates Linux. Includes i386
 RUN dpkg --add-architecture i386 && \
   apt-get update && \
   apt-get install -y \
     aria2 \
-    libstdc++6-4.4-pic \
     libaio1 \
     libpam-ldap:i386 \
+    libstdc++6-4.4-pic \
     lib32stdc++6
 
 # Download the installer.
@@ -51,8 +53,9 @@ COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
 # Install DB2 and remove the installer.
 RUN cd /tmp/${DB2_INST_DIR} && \
   ./db2prereqcheck -v ${DB2_VERSION} && \
-  ./db2setup -r /tmp/${DB2_RESP_FILE} && \
+  ./db2setup -r /tmp/${DB2_RESP_FILE} || \
   cat /tmp/db2setup.log && \
+  ${DB2_DIR}/bin/db2val -o || \
   cd && \
   rm -Rf /tmp/${DB2_INST_DIR} && \
   rm /tmp/${DB2_RESP_FILE}

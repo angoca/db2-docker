@@ -5,14 +5,14 @@
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
 
-FROM angoca/db2-install:expc
+FROM angoca/db2-install:server_t
 
 MAINTAINER Andres Gomez <angoca@yahoo.com>
 
 # Set of variables to define the type of DB2 being installed.
 
 ## Name of the response file included in the Docker image.
-ENV DB2_RESP_FILE db2expc.rsp
+ENV DB2_RESP_FILE db2server_t.rsp
 ## Directory where DB2 is installed.
 ENV DB2_DIR /opt/ibm/db2/V10.5
 
