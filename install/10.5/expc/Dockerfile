@@ -24,7 +24,7 @@ ENV DB2_DIR /opt/ibm/db2/V10.5
 ## URL to download the installer. From IBM, but it has to be updated because the
 ## link is temporal. You can get a new valid link from
 ## http://www.ibm.com/software/data/db2/express-c/download.html
-ENV DB2_DOWNLOAD https://iwm.dhe.ibm.com/sdfdl/v2/regs2/db2pmopn/db2_v105/expc/Xa.2/Xb.aA_60_-i75MwL9JKb3_JnLkeDltZUdcgF5mlWmBo_g/Xc.db2_v105/expc/v10.5_linuxx64_expc.tar.gz/Xd./Xf.LPr.D1vk/Xg.7896296/Xi.swg-db2expressc/XY.regsrvs/XZ.USh1SRvgyXVOj1uqGuKpSQk2Sqg/v10.5_linuxx64_expc.tar.gz
+ENV DB2_DOWNLOAD https://iwm.dhe.ibm.com/sdfdl/v2/regs2/db2pmopn/db2_v105/expc/Xa.2/Xb.aA_60_-i75MwMS-SSk0s0NgHKRroNxjoUHmDlQ9eVA/Xc.db2_v105/expc/v10.5_linuxx64_expc.tar.gz/Xd./Xf.LPr.D1vk/Xg.7897944/Xi.swg-db2expressc/XY.regsrvs/XZ.1yQffEYFg_ZWKjDkw4kNq9F5gqg/v10.5_linuxx64_expc.tar.gz
 
 # Updates Linux. Includes i386
 RUN dpkg --add-architecture i386 && \
