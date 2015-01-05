@@ -20,8 +20,8 @@ ENV DB2_DIR /opt/ibm/db2/V10.5
 COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
 
 # Creates the instance with the provided response file.
-RUN ${DB2_DIR}/instance/db2isetup -r /tmp/${DB2_RESP_FILE} || \
-  cat /tmp/db2isetup.log && \
+RUN ( ${DB2_DIR}/instance/db2isetup -r /tmp/${DB2_RESP_FILE} && \
+  cat /tmp/db2isetup.log || cat /tmp/db2isetup.log ) && \
   rm /tmp/${DB2_RESP_FILE}
 
 EXPOSE 50000
@@ -30,4 +30,4 @@ USER db2inst1
 
 WORKDIR /home/db2inst1
 
-CMD ["db2"]
+#CMD ["source /home/db2inst1/sqllib/db2profile && db2"]

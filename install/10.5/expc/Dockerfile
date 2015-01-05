@@ -51,9 +51,9 @@ COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
 # Install DB2 and remove the installer.
 RUN cd /tmp/${DB2_INST_DIR} && \
   ./db2prereqcheck -v ${DB2_VERSION} && \
-  ./db2setup -r /tmp/${DB2_RESP_FILE} || \
-  cat /tmp/db2setup.log && \
-  ${DB2_DIR}/bin/db2val -o || \
+  ( ./db2setup -r /tmp/${DB2_RESP_FILE} && \
+  cat /tmp/db2setup.log || cat /tmp/db2setup.log ) && \
+  ${DB2_DIR}/bin/db2val -o && \
   cd && \
   rm -Rf /tmp/${DB2_INST_DIR} && \
   rm /tmp/${DB2_RESP_FILE}
