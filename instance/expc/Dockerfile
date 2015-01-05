@@ -15,19 +15,19 @@ MAINTAINER Andres Gomez <angoca@yahoo.com>
 ENV DB2_RESP_FILE db2expc.rsp
 ## Directory where DB2 is installed.
 ENV DB2_DIR /opt/ibm/db2/V10.5
+## Script to create the instance
+ENV DB2_INST_CREA_SCR createInstance
+## Directory for all scripts.
+ENV DB2_CONF /tmp/db2_conf
+
+RUN env
+# Creates a directory for all scripts
+RUN mkdir ${DB2_CONF}
+WORKDIR /tmp/db2_conf
 
 # Copies the response file
-COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
+COPY ${DB2_RESP_FILE} ${DB2_CONF}/${DB2_RESP_FILE}
 
-# Creates the instance with the provided response file.
-RUN ( ${DB2_DIR}/instance/db2isetup -r /tmp/${DB2_RESP_FILE} && \
-  cat /tmp/db2isetup.log || cat /tmp/db2isetup.log ) && \
-  rm /tmp/${DB2_RESP_FILE}
+# Copies the script to create the instance
+COPY ${DB2_INST_CREA_SCR} ${DB2_CONF}/${DB2_INST_CREA_SCR}
 
-EXPOSE 50000
-
-USER db2inst1
-
-WORKDIR /home/db2inst1
-
-#CMD ["source /home/db2inst1/sqllib/db2profile && db2"]
