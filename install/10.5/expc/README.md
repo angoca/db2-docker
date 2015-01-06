@@ -1,7 +1,7 @@
 # Supported tags and respective `Dockerfile` links
 
- * `10.5-expc`, `expc`, `latest` (10.5/expc/Dockerfile)
- * `10.5-server_t`, `server_t` (10.5/server_t/Dockerfile)
+ * [`10.5-expc`, `expc`, `latest` (10.5/expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/10.5/expc/Dockerfile)
+ * [`10.5-server_t`, `server_t` (10.5/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/10.5/server_t/Dockerfile)
 
 # What is DB2?
 

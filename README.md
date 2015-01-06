@@ -1,45 +1,21 @@
-# Overview & links
+This is a set of Docker images to install DB2 LUW.
+The repository consist of two sets of images:
 
-This image will download and install DB2 LUW Express-C.
-DB2 is a relational database manager system (RDBMS) from IBM.
-It exists in different platforms, including Linux, UNIX and Windows (LUW).
-There are several editions of this RDBMS, one of them is free to use, which is
-DB2 Express-C.
-The most recent version of DB2 LUW is 10.5,
+ * db2-install: Download and install DB2/
+ * db2-instance: Configures the environment to create an instance.
 
- * [Wikipedia DB2](https://en.wikipedia.org/wiki/IBM_DB2)
+This can install DB2 Express-C or Enterprise Server Trial edition.
+The links to download these products are temporal, and they have to be
+updated in the `Dockerfile`.
+
  * [DB2 LUW](http://www.ibm.com/software/data/db2/)
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
 
-The binary is obtained direclty from IBM; however, this link is temporal.
-You can change the URL for a public Dropbox:
-
- * [https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz](https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz)
-
-The image will just install DB2 and it will not create any DB2 instance.
-
-List of Docker files:
-
-* [DB2 Express-C 10.5](https://github.com/angoca/db2-dockers/blob/master/install/10.5/expc/Dockerfile) (Install: expc, latest).
-* [DB2 Enterprise server 10.5](https://github.com/angoca/db2-dockers/blob/master/install/10.5/server_t/Dockerfile) (Install: server_t) trial for 30 days
-* [DB2 instance for Express-C](https://github.com/angoca/db2-dockers/blob/master/instance/expc/Dockerfile) (Instance: expc, latest).
-
-For the DB2 installation, a provided response file is used in each case.
-
-# How-to/usage
-
-You just need to call this image, and this will download and install DB2, and
-clean the environment. If the binaries cannot be retrieved, the DB2 link can be
-changed.
-DB2 will be installed in the container in:
-
-    /opt/ibm/db2/V10.5
-
-Remember that the installation does not include any instance nor database.
-
-# Issues & contributions
+The first image will prepare the DB2 environment, by just installing the
+binaries.
+After that, the user can start the configuraiton with  the second image, that
+gives a set of script to create the instance and configure the default values.
+These values can be modified for other configurations.
 
 In you find any issue, please contact [@angoca](https://twitter.com/angoca).
-Or create an issue at
-[https://github.com/angoca/db2-dockers/issues](https://github.com/angoca/db2-dockers/issues)
 
