@@ -1,18 +1,38 @@
-# Overview & links
+# Supported tags and respective `Dockerfile` links
 
-This image will download and install DB2 LUW Express-C.
-DB2 is a relational database manager system (RDBMS) from IBM.
-It exists in different platforms, including Linux, UNIX and Windows (LUW).
-There are several editions of this RDBMS, one of them is free to use, which is
-DB2 Express-C edition.
-The most recent version of DB2 LUW is 10.5,
+ * `10.5-expc`, `expc`, `latest` (10.5/expc/Dockerfile)
+ * `10.5-server_t`, `server_t` (10.5/server_t/Dockerfile)
 
- * [Wikipedia DB2](https://en.wikipedia.org/wiki/IBM_DB2)
+# What is DB2?
+
+IBM DB2 is a family of database server products developed by IBM.
+These products all support the relational model, but in recent years some
+products have been extended to support object-relational features and
+non-relational structures, in particular XML.
+
+Historically and unlike other database vendors, IBM produced a
+platform-specific DB2 product for each of its major operating systems.
+However, in the 1990s IBM changed track and produced a DB2 "common server"
+product, designed with a common code base to run on different platforms.
+
+ * [wikipedia.org/wiki/IBM_DB2](https://en.wikipedia.org/wiki/IBM_DB2)
  * [DB2 LUW](http://www.ibm.com/software/data/db2/)
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
 
-The binary is obtained direclty from IBM; however, this link is temporal.
-You can change the URL for a public Dropbox:
+![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/install/10.5/expc/logo.png)
+
+# How to use this image
+
+This image will download and install DB2 LUW Express-C, but it will not create
+and instance nor database.
+
+In order to configure the DB2 environment, you can use the image
+[angoca/db2-instance](https://registry.hub.docker.com/u/angoca/db2-instance/)
+or you can create yourself the instance (`db2icrt`) and the database (
+`db2 create db sample`).
+
+The installer is obtained direclty from IBM; however, this link is temporal.
+You can clone this repository and change the URL for a public Dropbox:
 
  * [https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz](https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz)
 
@@ -20,34 +40,41 @@ Or update the link from:
 
  * [http://www.ibm.com/software/data/db2/express-c/download.html](http://www.ibm.com/software/data/db2/express-c/download.html)
 
-The image will just install DB2 and it will not create any DB2 instance.
 
-List of Docker files:
+For the DB2 installation, a provided response file is used.
+You can clone this repository and modify the response file for your own needs.
 
-* [DB2 Express-C 10.5](https://github.com/angoca/db2-dockers/blob/master/install/10.5/expc/Dockerfile)
-(expc, latest).
-* [DB2 Enterprise server 10.5](https://github.com/angoca/db2-dockers/blob/master/install/10.5/server_t/Dockerfile)
-(server_t) trial for 30 days
-
-As you can see, there is another image that will download a DB2 fixpack. This is
-valid for 30 days at least you have a license.
-
-For the DB2 installation, a provided response file is used in each case.
-
-# How-to/usage
-
-You just need to call this image, and this will download and install DB2, and
-clean the environment. If the binaries cannot be retrieved, the DB2 link can be
-changed.
 DB2 will be installed in the container in:
 
     /opt/ibm/db2/V10.5
 
-Remember that the installation does not include any instance or database.
+## Next steps
 
-# Issues & contributions
+You will probably use the default instance `db2inst1 listening port 50000.
+You can use the `angoca/db2-instance` in order to prepare the environment for
+an instance with these characteristics.
 
-In you find any issue, please contact [@angoca](https://twitter.com/angoca).
-Or create an issue at
-[https://github.com/angoca/db2-dockers/issues](https://github.com/angoca/db2-dockers/issues)
+ * [`angoca/db2-instance`](https://registry.hub.docker.com/u/angoca/db2-instance/)
+
+# User Feedback
+
+## Issues
+
+If you have any problems with or questions about this image, please contact us
+through a [GitHub issue](https://github.com/angoca/db2-dockers/issues).
+
+You can also reach the mainteiner via Twitter
+[@angoca](https://twitter.com/angoca).
+
+## Contributing
+
+You are invited to contribute new features, fixes, or updates, large or small;
+we are always thrilled to receive pull requests, and do our best to process them
+as fast as we can.
+
+Before you start to code, we recommend discussing your plans through a GitHub
+issue, especially for more ambitious contributions.
+This gives other contributors a chance to point you in the right direction,
+give you feedback on your design, and help you find out if someone else is
+working on the same thing.
 
