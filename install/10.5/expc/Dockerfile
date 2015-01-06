@@ -9,6 +9,7 @@ FROM ubuntu:14.04
 
 MAINTAINER Andres Gomez <angoca@yahoo.com>
 
+RUN sudo apt-get install -y curl && curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link.md -s
 # Set of variables to define the type of DB2 being installed.
 
 ## Name of the downloaded file.
@@ -21,11 +22,8 @@ ENV DB2_VERSION 10.5.0.4
 ENV DB2_RESP_FILE db2expc.rsp
 ## Directory where DB2 is installed.
 ENV DB2_DIR /opt/ibm/db2/V10.5
-## URL to download the installer. The link is obtained from an article in the Wiki
-## https://github.com/angoca/db2-docker/wiki/db2-link
-## That article should contain a valid link as the last line.
-## If the link is not valid, you can modify the wiki.
-ENV DB2_DOWNLOAD $(curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link.md -s)
+## Name of the script that downloads DB2.
+ENV DB2_DOWNLOAD download
 
 # Updates Linux. Includes i386
 RUN dpkg --add-architecture i386 && \
@@ -37,9 +35,15 @@ RUN dpkg --add-architecture i386 && \
     libstdc++6-4.4-pic \
     lib32stdc++6
 
+# Copies the script to downalod
+COPY ${DB2_DOWNLOAD} /tmp/${DB2_DOWNLOAD}
+
 # Download the installer.
-RUN cd /tmp && \
-  aria2c -x 16 ${DB2_DOWNLOAD}
+## URL to download the installer. The link is obtained from an article in the Wiki
+## https://github.com/angoca/db2-docker/wiki/db2-link
+## That article should contain a valid link as the last line.
+## If the link is not valid, you can modify the wiki.
+RUN /tmp/download
 
 # Extract the installer and delete the tar file.
 RUN cd /tmp && \

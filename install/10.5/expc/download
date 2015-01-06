@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# URL to download the installer. The link is obtained from an article in the Wiki
+# https://github.com/angoca/db2-docker/wiki/db2-link
+# That article should contain a valid link as the last line.
+# If the link is not valid, you can modify the wiki.
+
+LINK=$(curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link.md -s | tail -1)
+# Download the installer.
+cd /tmp
+echo ${LINK}
+aria2c -x 16 ${LINK}
+
