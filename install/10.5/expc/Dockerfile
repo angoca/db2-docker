@@ -21,10 +21,11 @@ ENV DB2_VERSION 10.5.0.4
 ENV DB2_RESP_FILE db2expc.rsp
 ## Directory where DB2 is installed.
 ENV DB2_DIR /opt/ibm/db2/V10.5
-## URL to download the installer. From IBM, but it has to be updated because the
-## link is temporal. You can get a new valid link from
-## http://www.ibm.com/software/data/db2/express-c/download.html
-ENV DB2_DOWNLOAD https://iwm.dhe.ibm.com/sdfdl/v2/regs2/db2pmopn/db2_v105/expc/Xa.2/Xb.aA_60_-i75MwMS-SSk0s0NgHKRroNxjoUHmDlQ9eVA/Xc.db2_v105/expc/v10.5_linuxx64_expc.tar.gz/Xd./Xf.LPr.D1vk/Xg.7897944/Xi.swg-db2expressc/XY.regsrvs/XZ.1yQffEYFg_ZWKjDkw4kNq9F5gqg/v10.5_linuxx64_expc.tar.gz
+## URL to download the installer. The link is obtained from an article in the Wiki
+## https://github.com/angoca/db2-docker/wiki/db2-link
+## That article should contain a valid link as the last line.
+## If the link is not valid, you can modify the wiki.
+ENV DB2_DOWNLOAD $(curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link.md -s)
 
 # Updates Linux. Includes i386
 RUN dpkg --add-architecture i386 && \
