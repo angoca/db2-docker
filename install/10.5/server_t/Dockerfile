@@ -23,24 +23,29 @@ ENV DB2_VERSION 10.5.0.5
 ENV DB2_RESP_FILE db2server_t.rsp
 ## Directory where DB2 is installed.
 ENV DB2_DIR /opt/ibm/db2/V10.5
-## URL to download the installer. From IBM, but it has to be updated because the
-## link is temporal. You can get a new valid link from
-## http://www.ibm.com/support/fixcentral/swg/quickorder?parent=ibm%7EInformation%2BManagement&product=ibm/Information+Management/DB2&release=10.5.*&platform=Linux+64-bit,x86_64&function=fixId&fixids=DB2-linuxx64-server_t-10.5.0.5-FP005&includeRequisites=1&includeSupersedes=0&downloadMethod=http&source=fc
-ENV DB2_DOWNLOAD https://delivery04.dhe.ibm.com/sdfdl/v2/sar/CM/IM/04yrx/0/Xa.2/Xb.jusyLTSp44S0MSO8Z59OKiPuice1BoD2NtK-w79dUdtSfR_F1xHav7vl7fo/Xc.CM/IM/04yrx/0/v10.5fp5_linuxx64_server_t.tar.gz/Xd./Xf.LPR.D1vk/Xg.7915501/Xi.habanero/XY.habanero/XZ.64S49xR9TwcWgPsBbVY8_2teJCY/v10.5fp5_linuxx64_server_t.tar.gz
+## Name of the script that downloads DB2.
+ENV DB2_DOWNLOAD download
 
 # Updates Linux. Includes i386
 RUN dpkg --add-architecture i386 && \
   apt-get update && \
   apt-get install -y \
     aria2 \
+    curl \
     libaio1 \
     libpam-ldap:i386 \
     libstdc++6-4.4-pic \
     lib32stdc++6
 
+# Copies the script to downalod
+COPY ${DB2_DOWNLOAD} /tmp/${DB2_DOWNLOAD}
+
 # Download the installer.
-RUN cd /tmp && \
-  aria2c -x 16 ${DB2_DOWNLOAD}
+## URL to download the installer. The link is obtained from an article in the Wiki
+## https://github.com/angoca/db2-docker/wiki/db2-link-server_t
+## That article should contain a valid link as the last line.
+## If the link is not valid, you can modify the wiki.
+RUN /tmp/download
 
 # Extract the installer and delete the tar file.
 RUN cd /tmp && \
@@ -61,6 +66,6 @@ RUN cd /tmp/${DB2_INST_DIR} && \
   rm /tmp/${DB2_RESP_FILE}
 
 # Removes the cache of apt-get and the unnecessary packages.
-RUN apt-get purge -y aria2 && \
+RUN apt-get purge -y aria2 curl && \
   apt-get clean -y
 

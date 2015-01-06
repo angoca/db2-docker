@@ -9,7 +9,6 @@ FROM ubuntu:14.04
 
 MAINTAINER Andres Gomez <angoca@yahoo.com>
 
-RUN sudo apt-get install -y curl && curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link.md -s
 # Set of variables to define the type of DB2 being installed.
 
 ## Name of the downloaded file.
@@ -30,6 +29,7 @@ RUN dpkg --add-architecture i386 && \
   apt-get update && \
   apt-get install -y \
     aria2 \
+    curl \
     libaio1 \
     libpam-ldap:i386 \
     libstdc++6-4.4-pic \
@@ -40,7 +40,7 @@ COPY ${DB2_DOWNLOAD} /tmp/${DB2_DOWNLOAD}
 
 # Download the installer.
 ## URL to download the installer. The link is obtained from an article in the Wiki
-## https://github.com/angoca/db2-docker/wiki/db2-link
+## https://github.com/angoca/db2-docker/wiki/db2-link-expc
 ## That article should contain a valid link as the last line.
 ## If the link is not valid, you can modify the wiki.
 RUN /tmp/download
@@ -64,6 +64,6 @@ RUN cd /tmp/${DB2_INST_DIR} && \
   rm /tmp/${DB2_RESP_FILE}
 
 # Removes the cache of apt-get and the unnecessary packages.
-RUN apt-get purge -y aria2 && \
+RUN apt-get purge -y aria2 curl && \
   apt-get clean -y
 

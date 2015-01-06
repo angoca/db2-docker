@@ -84,7 +84,7 @@ daemon.
     sudo docker run -d -p 50000:50000 
 
 
-This image will download and install DB2 LUW Expreddddddss-C, but it will not create
+This image will download and install DB2 LUW Express-C, but it will not create
 and instance nor database.
 
 In order to configure the DB2 environment, you can use the image
