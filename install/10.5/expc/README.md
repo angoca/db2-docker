@@ -32,14 +32,11 @@ or you can create yourself the instance (`db2icrt`) and the database (
 `db2 create db sample`).
 
 The installer is obtained direclty from IBM; however, this link is temporal.
-You can clone this repository and change the URL for a public Dropbox:
+If the link is not longer valid, you just need to change a page of the Wiki,
+by providing a new valid link.
+The instruction are in the same page:
 
- * [https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz](https://www.dropbox.com/s/ut3136498v8lbti/v10.5_linuxx64_expc.tar.gz)
-
-Or update the link from:
-
- * [http://www.ibm.com/software/data/db2/express-c/download.html](http://www.ibm.com/software/data/db2/express-c/download.html)
-
+ * [DB2 download link page in wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc)
 
 For the DB2 installation, a provided response file is used.
 You can clone this repository and modify the response file for your own needs.
@@ -50,11 +47,15 @@ DB2 will be installed in the container in:
 
 ## Next steps
 
-You will probably use the default instance `db2inst1 listening port 50000.
+You will probably use the default instance `db2inst1` listening on port 50000.
 You can use the `angoca/db2-instance` in order to prepare the environment for
 an instance with these characteristics.
 
  * [`angoca/db2-instance`](https://registry.hub.docker.com/u/angoca/db2-instance/)
+
+If you want to configure the environment by yourself, you can run the container
+and execute the commands to create the instance (`db2icrt`), the database
+(`db2 create db xxx`), the security (`useradd`) and the rest.
 
 # User Feedback
 
