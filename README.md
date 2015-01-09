@@ -3,8 +3,8 @@ The repository consist in a set of four images:
 
  * [db2-install: Download and install DB2/](https://registry.hub.docker.com/u/angoca/db2-install/)
  * [db2-instance: Configures the environment to create an instance](https://registry.hub.docker.com/u/angoca/db2-instance/)
- * db2inst1 (Without Dockerfile)
- * db2-sampe (Without Dockerfile)
+ * [db2inst1 (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2inst1/)
+ * [db2-sampe (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2-sample/)
 
 Stack of images:
 
