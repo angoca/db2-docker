@@ -132,6 +132,20 @@ If you want to access the console, you need to do an attach to the container
 
     sudo attach db2inst1
 
+## Set of images
+
+This image is part of a set of images to create your DB2 environment:
+
+    +----------------+
+    |   db2-sample   |  <-- Sample database (db2sampl)
+    +----------------+
+    |    db2inst1    |  <-- Default instance created (db2inst1:50000)
+    +----------------+
+    |  db2-instance  |  <-- Environment to create an instance
+    +----------------+
+    |   db2-install  |  <-- DB2 Express-C installed
+    +----------------+
+
 # User Feedback
 
 ## Issues

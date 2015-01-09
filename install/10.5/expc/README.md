@@ -57,6 +57,20 @@ If you want to configure the environment by yourself, you can run the container
 and execute the commands to create the instance (`db2icrt`), the database
 (`db2 create db xxx`), the security (`useradd`) and the rest.
 
+## Set of images
+
+This image is part of a set of images to create your DB2 environment:
+
+    +----------------+
+    |   db2-sample   |  <-- Sample database (db2sampl)
+    +----------------+
+    |    db2inst1    |  <-- Default instance created (db2inst1:50000)
+    +----------------+
+    |  db2-instance  |  <-- Environment to create an instance
+    +----------------+
+    |   db2-install  |  <-- DB2 Express-C installed
+    +----------------+
+
 # User Feedback
 
 ## Issues

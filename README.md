@@ -1,15 +1,30 @@
 This is a set of Docker images to install DB2 LUW.
-The repository consist of two sets of images:
+The repository consist in a set of four images:
 
  * [db2-install: Download and install DB2/](https://registry.hub.docker.com/u/angoca/db2-install/)
  * [db2-instance: Configures the environment to create an instance](https://registry.hub.docker.com/u/angoca/db2-instance/)
+ * db2inst1 (Without Dockerfile)
+ * db2-sampe (Without Dockerfile)
 
-This can install DB2 Express-C or Enterprise Server Trial edition.
+    +----------------+
+    |   db2-sample   |  <-- Sample database (db2sampl)
+    +----------------+
+    |    db2inst1    |  <-- Default instance created (db2inst1:50000)
+    +----------------+
+    |  db2-instance  |  <-- Environment to create an instance
+    +----------------+
+    |   db2-install  |  <-- DB2 Express-C installed
+    +----------------+
+
+The install images can install DB2 Express-C or Enterprise Server Trial edition.
 The links to download these products are temporal, and they have to be
-updated in the `Dockerfile`.
+updated in the Wiki.
+The updated link will be used by the images
 
  * [DB2 LUW](http://www.ibm.com/software/data/db2/)
+([Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc))
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
+([Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-server_t))
 
 The first image will prepare the DB2 environment, by just installing the
 binaries.
@@ -17,13 +32,17 @@ After that, the user can start the configuraiton with  the second image, that
 gives a set of script to create the instance and configure the default values.
 These values can be modified for other configurations.
 
-This image was based on three existing DB2-Docker images:
+# Acknowledgements
+
+This image was based on the following DB2-Docker images:
 
  * [grange74/docker-db2](https://github.com/grange74/docker-db2) - https://registry.hub.docker.com/u/grange74/db2/
  * [bryantsai/db2-docker](https://github.com/bryantsai/db2-docker)
  * [jeffbonhag/db2-docker](https://github.com/jeffbonhag/db2-docker)
  * [miraitechno/db2](https://github.com/miraitechno/docker-db2) - https://registry.hub.docker.com/u/miraitechno/db2/
  * https://registry.hub.docker.com/u/zongqiang/db2v10.5expc/
+
+# Advantages of these images
 
 The advantages to use this image instead of the other are:
 
@@ -35,19 +54,22 @@ The advantages to use this image instead of the other are:
    that uses a response file.
    The instance owner can have any name; it is not limited to `db2inst1` or
    something like `db2instX` where X is a number.
- * The environment is configured as any other DB2 installation.
-   There is not a database, just a running instance.
- * This image is published in Docker, and it is in the `angoca` repository.
-   The image is not created on the fly, but it has been built by docker.
+ * The environment can be configured in different ways.
+   It is not limited to a fixed instance or database.
+   The set of images provide different levels of flexible configuration.
+ * The images are published in Docker in the `angoca` repository.
+   The image is not created on the fly.
+   The basic images are created from Dockerfiles, the other wer published
+   in hte repository with the instance or database already created.
    As part of the publish, a corresponding documentation is provided.
- * This image can be found by performing a search in Docker.
+ * The images can be found by performing a search in Docker.
    This allows to have a better visibility.
  * It was developed by a DB2 DBA.
    This makes this image appropriate not only for developers but also for DBAs
    and SysAdmins.
- * The complete installation and configuration is divided in two type of
-   image.
+ * The complete installation and configuration is divided in different images.
    This makes the solution more flexible and easy to extent.
 
-In you find any issue, please contact [@angoca](https://twitter.com/angoca).
+In you find any issue, please contact [@angoca](https://twitter.com/angoca) or
+create a an issue in [GitHub](https://github.com/angoca/db2-docker/issues).
 
