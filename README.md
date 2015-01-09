@@ -6,6 +6,8 @@ The repository consist in a set of four images:
  * db2inst1 (Without Dockerfile)
  * db2-sampe (Without Dockerfile)
 
+Stack of images:
+
     +----------------+
     |   db2-sample   |  <-- Sample database (db2sampl)
     +----------------+
