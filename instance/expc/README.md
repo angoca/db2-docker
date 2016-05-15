@@ -16,7 +16,7 @@ However, in the 1990s IBM changed track and produced a DB2 "common server"
 product, designed with a common code base to run on different platforms.
 
  * [wikipedia.org/wiki/IBM_DB2](https://en.wikipedia.org/wiki/IBM_DB2)
- * [DB2 LUW](http://www.ibm.com/software/data/db2/)
+ * [DB2 LUW](http://www.ibm.com/analytics/us/en/technology/db2/)
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
 
 ![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/install/10.5/expc/logo.png)
@@ -27,16 +27,37 @@ A DB2 instance is a running process that control the security at the higher
 level, listens on a specific port, controls the databases that it hosts, and
 many other operations related to database administration.
 
+# Set of images
+
+This image is part of a set of images to create your DB2 environment:
+
+ * [db2-install: Download and install DB2/](https://registry.hub.docker.com/u/angoca/db2-install/)
+ * [db2-instance: Configures the environment to create an instance](https://registry.hub.docker.com/u/angoca/db2-instance/)
+ * [db2inst1 (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2inst1/)
+ * [db2-sample (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2-sample/)
+
+This is the stack of images:
+
+    +----------------+
+    |   db2-sample   |  <-- Sample database (db2sampl)
+    +----------------+
+    |    db2inst1    |  <-- Default instance created (db2inst1:50000)
+    +----------------+
+    |  db2-instance  |  <-- Environment to create an instance
+    +----------------+
+    |   db2-install  |  <-- DB2 Express-C installed
+    +----------------+
+
 # How to use this image
 
 This image will prepare the environment to create a DB2 instance, and it uses
 the [`angoca/db2-install`](https://registry.hub.docker.com/u/angoca/db2-install/)
-image.
+image that installs DB2.
 
 Once the installation was done, this image could be loaded.
 This will populate the image with some scripts to ease the instance creation.
 The process follows the instructions of a response file.
-The instance by default is `db2inst1` with port 50000 in
+The instance by default is `db2inst1` listening on port 50000 installed in the
 `/home/db2inst1i` directory.
 
 The process is performed in two steps:
@@ -83,11 +104,11 @@ response file.
 Once the response file is ready, you just need to execute the script.
 It will run `db2isetup`, then start the instance, and leave the console open
 under the `db2inst1` user.
-There, you can create the database, or perform other configuration changes.
+Once there, you can create the database, or perform other configuration changes.
 
     ./createInstance
 
-Once you have finish the configuration, you can leave the container running by
+Once you have finished the configuration, you can leave the container running by
 typing:
 
     Ctrl + P + Q
@@ -132,19 +153,53 @@ If you want to access the console, you need to do an attach to the container
 
     sudo attach db2inst1
 
-## Set of images
+# Acknowledgements
 
-This image is part of a set of images to create your DB2 environment:
+The design of this image is based on the following DB2-Docker images:
 
-    +----------------+
-    |   db2-sample   |  <-- Sample database (db2sampl)
-    +----------------+
-    |    db2inst1    |  <-- Default instance created (db2inst1:50000)
-    +----------------+
-    |  db2-instance  |  <-- Environment to create an instance
-    +----------------+
-    |   db2-install  |  <-- DB2 Express-C installed
-    +----------------+
+ * [grange74/docker-db2](https://github.com/grange74/docker-db2) - https://registry.hub.docker.com/u/grange74/db2/
+ * [bryantsai/db2-docker](https://github.com/bryantsai/db2-docker)
+ * [jeffbonhag/db2-docker](https://github.com/jeffbonhag/db2-docker)
+ * [miraitechno/db2](https://github.com/miraitechno/docker-db2) - https://registry.hub.docker.com/u/miraitechno/db2/
+ * https://registry.hub.docker.com/u/zongqiang/db2v10.5expc/
+ * [IBM IM C3ofC - DB2](https://github.com/IMC3ofC/db2express-c.docker)
+ * [https://hub.jazz.net/project/cbmcgee/rtcdocker/overview](https://hub.jazz.net/project/cbmcgee/rtcdocker/overview#https://hub.jazz.net/project/cbmcgee/rtcdocker/cbmcgee%2520%257C%2520rtcdocker/_7MYIkF4LEeSi-OIwg-tlIA/_7Mut4F4LEeSi-OIwg-tlIA/db2/db/Dockerfile) Chris McGee
+
+And the posts of the following blogs:
+
+ * [DB2 on Docker](https://bryantsai.com/db2-on-docker/)
+ * [db2indocker](http://db2indocker.blogspot.com.co/)
+
+# Advantages of these images
+
+The advantages to use this image instead of the other are:
+
+ * The DB2 binary file is download semi-automatically.
+   Just the wiki has to have the valid link.
+   The other images requiere to modify the image with a valid link or to have
+   DB2 installer/binaries locally in the machine.
+ * This image has a mechanism to create more instances with a simple script
+   that uses a response file.
+   The instance owner can have any name; it is not limited to `db2inst1` or
+   something like `db2instX` where X is a number.
+ * The environment can be configured in different ways.
+   It is not limited to a fixed instance or database.
+   The set of images provide different levels of flexible configuration.
+ * The images are published in Docker in the `angoca` repository.
+   The image is not created on the fly.
+   The basic images are created from Dockerfiles, the other were published
+   in the repository with the instance or database already created.
+   As part of the publish, a corresponding documentation is provided.
+ * The images can be found by performing a search in Docker.
+   This allows to have a better visibility.
+ * It was developed by a DB2 DBA.
+   This makes this image appropriate not only for developers but also for DBAs
+   and SysAdmins.
+ * The complete installation and configuration is divided in different images.
+   This makes the solution more flexible and easy to extent.
+ * There is documentation.
+   This is very important for new users to understand the structure of the
+   images.
 
 # User Feedback
 
