@@ -67,9 +67,7 @@ The process is performed in two steps:
 
 There is a third step that is the execution of the instance as a daemon.
 
-Please, check the 
-[Travis-CI execution](https://travis-ci.org/angoca/db2-docker)
-to see how this image is build.
+Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
 ## Build
 
