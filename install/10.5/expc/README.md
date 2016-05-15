@@ -16,7 +16,7 @@ However, in the 1990s IBM changed track and produced a DB2 "common server"
 product, designed with a common code base to run on different platforms.
 
  * [wikipedia.org/wiki/IBM_DB2](https://en.wikipedia.org/wiki/IBM_DB2)
- * [DB2 LUW](http://www.ibm.com/software/data/db2/)
+ * [DB2 LUW](http://www.ibm.com/analytics/us/en/technology/db2/)
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
 
 ![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/install/10.5/expc/logo.png)
