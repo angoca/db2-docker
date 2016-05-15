@@ -75,9 +75,7 @@ DB2 will be installed in the container in:
 
     /opt/ibm/db2/V10.5
 
-Please, check the 
-[Travis-CI execution](https://travis-ci.org/angoca/db2-docker)
-to see how this image is build.
+Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
 ## Next steps
 
