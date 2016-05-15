@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Helper to create an instance, start it and change to it.
+#
+# Version: 2016-05-15
+# Author: Andres Gomez Casanova (AngocA)
+# Made in COLOMBIA.
+
 # Creates the instance according to the response file.
 ${DB2_DIR}/instance/db2isetup -r ${DB2_CONF}/${DB2_RESP_FILE}
 
@@ -8,3 +14,5 @@ su -c "db2start" - db2inst1
 
 # Changes to the instance user.
 su - db2inst1
+
+

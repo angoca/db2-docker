@@ -13,8 +13,6 @@ MAINTAINER Andres Gomez <angoca@yahoo.com>
 
 ## Name of the response file included in the Docker image.
 ENV DB2_RESP_FILE db2server_t.rsp
-## Directory where DB2 is installed.
-ENV DB2_DIR /opt/ibm/db2/V10.5
 
 # Copies the response file
 COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
@@ -30,4 +28,7 @@ USER db2inst1
 
 WORKDIR /home/db2inst1
 
-CMD ["db2"]
+ENTRYPOINT ["db2"]
+CMD ["?"]
+
+

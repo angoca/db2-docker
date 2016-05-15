@@ -8,15 +8,16 @@ The repository consist in a set of four images:
 
 Stack of images:
 
+           expc         server_t
     +----------------+
-    |   db2-sample   |  <-- Sample database (db2sampl)
-    +----------------+
-    |    db2inst1    |  <-- Default instance created (db2inst1:50000)
-    +----------------+
-    |  db2-instance  |  <-- Environment to create an instance
-    +----------------+
-    |   db2-install  |  <-- DB2 Express-C installed
-    +----------------+
+    |   db2-sample   |               <-- Sample database (db2sampl)
+    +----------------+------------+
+    |    db2inst1    |            |  <-- Default instance created (db2inst1:50000)
+    +----------------+  instance  |
+    |  db2-instance  |            |  <-- Environment to create an instance
+    +----------------+------------+
+    |   db2-install  |  install   |  <-- DB2 Express-C installed
+    +----------------+------------+
 
 The install images can install DB2 Express-C or Enterprise Server Trial edition.
 The links to download these products are temporal, and they have to be
@@ -24,9 +25,9 @@ updated in the Wiki.
 The updated link will be used by the images
 
  * [DB2 LUW](http://www.ibm.com/software/data/db2/)
-([Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc))
+   ([Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc))
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
-([Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-server_t))
+   ([Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-server_t))
 
 The first image will prepare the DB2 environment, by just installing the
 binaries.
