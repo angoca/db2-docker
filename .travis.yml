@@ -6,7 +6,8 @@ services:
 before_install:
   - docker build -t angoca/db2-install:expc install/10.5/expc/
   - docker build -t angoca/db2-instance:expc instance/expc/
-  - sudo docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50000:50000 angoca/db2-instance
+# TODO create instance
+  - docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50000:50000 angoca/db2-instance:expc
   - docker ps -a
 
 script:
