@@ -19,8 +19,6 @@ MAINTAINER Andres Gomez <angoca@yahoo.com>
 ENV DB2_VERSION 10.5
 ## Fixpack of the downloaded file.
 ENV DB2_FIXPACK 7
-## Version and fixpack. Used for db2prereqcheck.
-ENV DB2_VERSION_FIXPACK ${DB2_VERSION}.0.${DB2_FIXPACK}
 ## Name of the downloaded file.
 ENV DB2_INSTALLER v${DB2_VERSION}fp${DB2_FIXPACK}_linuxx64_server_t.tar.gz
 ## Directory of the installers. Associated to the edition.
@@ -61,7 +59,7 @@ RUN dpkg --add-architecture i386 && \
   rm ${DB2_INSTALLER} && \
 # Install DB2 and remove the installer.
   cd /tmp/${DB2_INST_DIR} && \
-  ./db2prereqcheck -v ${DB2_VERSION} && \
+  ./db2prereqcheck -l && \
   ( ./db2setup -r /tmp/${DB2_RESP_FILE} && \
   cat /tmp/db2setup.log || cat /tmp/db2setup.log ) && \
   ${DB2_DIR}/bin/db2val -o && \
