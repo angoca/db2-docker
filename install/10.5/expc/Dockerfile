@@ -24,6 +24,13 @@ ENV DB2_DIR /opt/ibm/db2/V10.5
 ## Name of the script that downloads DB2.
 ENV DB2_DOWNLOAD download
 
+# Copies the script to download
+COPY ${DB2_DOWNLOAD} /tmp/${DB2_DOWNLOAD}
+
+# Copies the response file
+COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
+
+# Run all commands in a single RUN layer to minimise the size of the image
 # Updates Linux. Includes i386
 RUN dpkg --add-architecture i386 && \
   apt-get update && \
@@ -33,37 +40,26 @@ RUN dpkg --add-architecture i386 && \
     libaio1 \
     libpam-ldap:i386 \
     libstdc++6-4.4-pic \
-    lib32stdc++6
-
-# Copies the script to downalod
-COPY ${DB2_DOWNLOAD} /tmp/${DB2_DOWNLOAD}
-
+    lib32stdc++6 && \
 # Download the installer.
 ## URL to download the installer. The link is obtained from an article in the Wiki
 ## https://github.com/angoca/db2-docker/wiki/db2-link-expc
 ## That article should contain a valid link as the last line.
 ## If the link is not valid, you can modify the wiki.
-RUN /tmp/download
-
+  /tmp/download && \
 # Extract the installer and delete the tar file.
-RUN cd /tmp && \
+  cd /tmp && \
   tar -zvxf ${DB2_INSTALLER} && \
-  rm ${DB2_INSTALLER}
-
-# Copies the response file
-COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
-
+  rm ${DB2_INSTALLER} && \
 # Install DB2 and remove the installer.
-RUN cd /tmp/${DB2_INST_DIR} && \
+  cd /tmp/${DB2_INST_DIR} && \
   ./db2prereqcheck -v ${DB2_VERSION} && \
   ( ./db2setup -r /tmp/${DB2_RESP_FILE} && \
   cat /tmp/db2setup.log || cat /tmp/db2setup.log ) && \
   ${DB2_DIR}/bin/db2val -o && \
   cd && \
   rm -Rf /tmp/${DB2_INST_DIR} && \
-  rm /tmp/${DB2_RESP_FILE}
-
+  rm /tmp/${DB2_RESP_FILE} && \
 # Removes the cache of apt-get and the unnecessary packages.
-RUN apt-get purge -y aria2 curl && \
+  apt-get purge -y aria2 curl && \
   apt-get clean -y
-
