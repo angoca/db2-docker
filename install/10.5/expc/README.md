@@ -25,6 +25,13 @@ product, designed with a common code base to run on different platforms.
 
 This image is part of a set of images to create your DB2 environment:
 
+ * [db2-install: Download and install DB2/](https://registry.hub.docker.com/u/angoca/db2-install/)
+ * [db2-instance: Configures the environment to create an instance](https://registry.hub.docker.com/u/angoca/db2-instance/)
+ * [db2inst1 (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2inst1/)
+ * [db2-sample (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2-sample/)
+
+This is the stack of images:
+
     +----------------+
     |   db2-sample   |  <-- Sample database (db2sampl)
     +----------------+
@@ -79,6 +86,37 @@ an instance with these characteristics.
 If you want to configure the environment by yourself, you can run the container
 and execute the commands to create the instance (`db2icrt`), the database
 (`db2 create db xxx`), the security (`useradd`) and the other stuff.
+
+# Advantages of these images
+
+The advantages to use this image instead of the other are:
+
+ * The DB2 binary file is download semi-automatically.
+   Just the wiki has to have the valid link.
+   The other images requiere to modify the image with a valid link or to have
+   DB2 installer/binaries locally in the machine.
+ * This image has a mechanism to create more instances with a simple script
+   that uses a response file.
+   The instance owner can have any name; it is not limited to `db2inst1` or
+   something like `db2instX` where X is a number.
+ * The environment can be configured in different ways.
+   It is not limited to a fixed instance or database.
+   The set of images provide different levels of flexible configuration.
+ * The images are published in Docker in the `angoca` repository.
+   The image is not created on the fly.
+   The basic images are created from Dockerfiles, the other were published
+   in the repository with the instance or database already created.
+   As part of the publish, a corresponding documentation is provided.
+ * The images can be found by performing a search in Docker.
+   This allows to have a better visibility.
+ * It was developed by a DB2 DBA.
+   This makes this image appropriate not only for developers but also for DBAs
+   and SysAdmins.
+ * The complete installation and configuration is divided in different images.
+   This makes the solution more flexible and easy to extent.
+ * There is documentation.
+   This is very important for new users to understand the structure of the
+   images.
 
 # User Feedback
 
