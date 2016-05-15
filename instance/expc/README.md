@@ -92,6 +92,10 @@ For example:
 
 The name of the container will be `db2inst1`.
 
+You can try the following line in order to not use privileged mode:
+
+    sudo docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50000:50000 angoca/db2-instance
+
 Once the container is running, the console is active under the `/tmp/db2_conf`
 directory.
 In this directory you will find a DB2 response file and a script to create an
