@@ -1,7 +1,7 @@
 # This Docker file downloads the DB2 LUW binaries and install them in the image.
 # It install the necessary libraries.
 #
-# Version: 2015-01-04
+# Version: 2016-05-15
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
 
@@ -16,7 +16,7 @@ ENV DB2_INSTALLER v10.5_linuxx64_expc.tar.gz
 ## Directory of the installers. Associated to the edition.
 ENV DB2_INST_DIR expc
 ## Version of the downloaded file. Used for db2prereqcheck.
-ENV DB2_VERSION 10.5.0.4
+ENV DB2_VERSION 10.5.0.7
 ## Name of the response file included in the Docker image.
 ENV DB2_RESP_FILE db2expc.rsp
 ## Directory where DB2 is installed.
@@ -30,7 +30,7 @@ COPY ${DB2_DOWNLOAD} /tmp/${DB2_DOWNLOAD}
 # Copies the response file
 COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
 
-# Run all commands in a single RUN layer to minimise the size of the image
+# Run all commands in a single RUN layer to minimize the size of the image.
 # Updates Linux. Includes i386
 RUN dpkg --add-architecture i386 && \
   apt-get update && \
