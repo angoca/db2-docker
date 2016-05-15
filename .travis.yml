@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker built -t angoca/db2-install install/10.5/expc/
+
+script:
+ - echo "Successful installation"
