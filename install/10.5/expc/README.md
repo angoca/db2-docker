@@ -26,15 +26,24 @@ product, designed with a common code base to run on different platforms.
 This image will download and install DB2 LUW Express-C, but it will not create
 and instance nor database.
 
+NOTE: The 
+[GitHub repository](https://github.com/angoca/db2-docker)
+has another Docker file that installs 
+[DB2 Enterprise Server Edition](https://github.com/angoca/db2-docker/tree/master/install/10.5/server_t)
+from the most recent fixpack; however, this installation requires
+a valid license after 90 days of usage. For this reason, this container
+is not published in the Hub.
+
 In order to configure the DB2 environment, you can use the image
 [angoca/db2-instance](https://registry.hub.docker.com/u/angoca/db2-instance/)
 or you can create yourself the instance (`db2icrt`) and the database (
 `db2 create db sample`).
 
 The installer is obtained direclty from IBM; however, this link is temporal.
-If the link is not longer valid, you just need to change a page of the Wiki,
+If the link is not longer valid, you just need to modify the page of the 
+[Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc),
 by providing a new valid link.
-The instruction are in the same page:
+The instructions are in the same page, just visit:
 
  * [DB2 download link page in wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc)
 
