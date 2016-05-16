@@ -15,6 +15,10 @@ else
   sed -i 's/db2inst1/${INSTANCE_NAME}/g' db2expc.rsp 
 fi
 
+cat db2expc.rsp
+
+set -v
+
 # Creates the instance according to the response file.
 ${DB2_DIR}/instance/db2isetup -r ${DB2_CONF}/${DB2_RESP_FILE}
 
