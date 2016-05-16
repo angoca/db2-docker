@@ -10,12 +10,9 @@ before_install:
   - docker build -t angoca/db2-instance:ese instance/10.5/server_t/
 
 script:
-# TODO create instance
   - docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50001:50000 angoca/db2-instance:ese
-  - docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst2" -p 50000:50000 angoca/db2-instance:expc <<EOT
-./createInstance db2inst2
-EOT
+  - docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst2" -p 50000:50000 angoca/db2-instance:expc ./createInstance db2inst2
+# TODO create instance
   - docker ps -a
- - echo "Successful installation"
 
 
