@@ -1,7 +1,7 @@
 # Supported tags and respective `Dockerfile` links
 
- * [`expc`, `latest` (expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/expc/Dockerfile)
- * [`10.5-ese`, `ese` (10.5/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/10.5/server_t/Dockerfile)
+ * [`expc`, `latest` (install/expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/expc/Dockerfile)
+ * [`10.5-ese`, `ese` (install/10.5/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/10.5/server_t/Dockerfile)
 
 # What is DB2?
 
@@ -19,10 +19,10 @@ Historically and unlike other database vendors, IBM produced a platform-specific
 
 This image is part of a set of images to create your DB2 environment:
 
- * [db2-install: Download and install DB2/](https://registry.hub.docker.com/u/angoca/db2-install/)
+ * [db2-install: Downloads and installs DB2/](https://registry.hub.docker.com/u/angoca/db2-install/)
  * [db2-instance: Configures the environment to create an instance](https://registry.hub.docker.com/u/angoca/db2-instance/)
- * [db2inst1 (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2inst1/)
- * [db2-sample (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2-sample/)
+ * [db2inst1: Instance db2inst1 created (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2inst1/)
+ * [db2-sample: Database sample created (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2-sample/)
 
 This is the stack of images:
 
