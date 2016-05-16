@@ -12,7 +12,7 @@ INSTANCE_NAME=$1
 if [ -z ${INSTANCE_NAME} ] ; then
   INSTANCE_NAME=db2inst1
 else
-  sed -i 's/db2inst1/${INSTANCE_NAME}/g' db2expc.rsp 
+  sed -i .bak 's/db2inst1/${INSTANCE_NAME}/g' db2expc.rsp 
 fi
 
 cat db2expc.rsp
