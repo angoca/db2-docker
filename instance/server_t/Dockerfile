@@ -28,7 +28,7 @@ USER db2inst1
 
 WORKDIR /home/db2inst1
 
-ENTRYPOINT ["db2"]
-CMD ["?"]
+#ENTRYPOINT ["db2"]
+#CMD ["?"]
 
 
