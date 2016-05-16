@@ -13,7 +13,7 @@ Historically and unlike other database vendors, IBM produced a platform-specific
  * [DB2 LUW](http://www.ibm.com/analytics/us/en/technology/db2/)
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
 
-![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/install/10.5/expc/logo.png)
+![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/install/expc/logo.png)
 
 # Set of images
 
