@@ -7,7 +7,7 @@ before_install:
   - docker build -t angoca/db2-install:expc install/expc/
   - docker build -t angoca/db2-instance:expc instance/expc/
   - docker build -t angoca/db2-install:ese install/10.5/server_t/
-  - docker build -t angoca/db2-instance:ese instance/10.5/server_t/
+  - docker build -t angoca/db2-instance:ese instance/server_t/
 
 script:
   - docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50001:50000 angoca/db2-instance:ese
