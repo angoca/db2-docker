@@ -49,7 +49,7 @@ Once the installation was done, this image could be loaded. This image will popu
 The process is performed in two steps:
 
  * First, the image is filled with the necessary scripts (build).
- * Second, the image creates the instance interactively and start it in background (run).
+ * Second, the image creates the instance interactively (run).
 
 Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
@@ -68,9 +68,7 @@ Build from sources
 
 ## Run
 
-The execution of a new container should be done in privilege mode, interactive
-with a seudo TTY.
-For example:
+The execution of a new container should be done in privilege mode, interactive with a seudo TTY. For example:
 
     sudo docker run -i -t --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2-instance
 
@@ -82,11 +80,13 @@ You can try the following line in order to not use privileged mode:
 
 Once the container is running, the console is active under the `/tmp/db2_conf` directory. In this directory you will find a DB2 response file and a script to create an instance. The DB2 response file is configured to create a DB2 instance called `db2inst1` listening on port `50000`. If you want to change these or other properties, you just need to modify the response file or call the createInstance script with another username, for example:
 
+    ./createInstance
+
+Or for a specific instance name
+
     ./createInstance myinst
 
-It will run `db2isetup`, then start the instance, and leave the console open under the `db2inst1` user or the one your provided. Once there, you can create the database, or perform other configuration changes.
-
-    ./createInstance
+It will run `db2isetup`, and then you can change to the instance user and start the instance. Once there, you can create the database, or perform other configuration changes.
 
 Once you have finished the configuration, you can leave the container running by typing:
 
