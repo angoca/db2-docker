@@ -22,10 +22,3 @@ set -v
 # Creates the instance according to the response file.
 ${DB2_DIR}/instance/db2isetup -r ${DB2_CONF}/${DB2_RESP_FILE}
 
-# Starts the created instance.
-su -c "db2start" - ${INSTANCE_NAME}
-
-# Changes to the instance user.
-su - ${INSTANCE_NAME}
-
-
