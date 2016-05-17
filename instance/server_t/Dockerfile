@@ -13,22 +13,20 @@ MAINTAINER Andres Gomez <angoca@yahoo.com>
 
 ## Name of the response file included in the Docker image.
 ENV DB2_RESP_FILE db2server_t.rsp
+## Script to create the instance
+ENV DB2_INST_CREA_SCR createInstance
+## Directory for all scripts.
+ENV DB2_CONF /tmp/db2_conf
+
+RUN env
+# Creates a directory for all scripts
+RUN mkdir ${DB2_CONF}
+WORKDIR /tmp/db2_conf
 
 # Copies the response file
-COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
+COPY ${DB2_RESP_FILE} ${DB2_CONF}/${DB2_RESP_FILE}
 
-# Creates the instance with the provided response file.
-RUN ${DB2_DIR}/instance/db2isetup -r /tmp/${DB2_RESP_FILE} || \
-  cat /tmp/db2isetup.log && \
-  rm /tmp/${DB2_RESP_FILE}
-
-EXPOSE 50000
-
-USER db2inst1
-
-WORKDIR /home/db2inst1
-
-#ENTRYPOINT ["db2"]
-#CMD ["?"]
+# Copies the script to create the instance
+COPY ${DB2_INST_CREA_SCR} ${DB2_CONF}/${DB2_INST_CREA_SCR}
 
 
