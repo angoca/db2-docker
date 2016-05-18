@@ -1,18 +1,33 @@
+env:
+  - ENV=expc
+  - ENV=ese
+
 sudo: required
 
 services:
   - docker
 
 before_install:
-  - docker build -t angoca/db2-install:expc install/expc/
-  - docker build -t angoca/db2-instance:expc instance/expc/
-  - docker build -t angoca/db2-install:ese install/10.5/server_t/
-  - docker build -t angoca/db2-instance:ese instance/server_t/
+  # Builds Express-C image
+  - bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2-install:expc install/expc/; fi"
+  - bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2-instance:expc instance/expc/; fi"
+  - bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2inst:expc db2inst1/expc/; fi"
+  # Builds Enterprise Server Edition image
+  - bash -c "if [ '$ENV' = 'ese' ]; then docker build -t angoca/db2-install:ese install/10.5/server_t/; fi"
+  - bash -c "if [ '$ENV' = 'ese' ]; then docker build -t angoca/db2-instance:ese instance/server_t/; fi"
+  - bash -c "if [ '$ENV' = 'ese' ]; then docker build -t angoca/db2inst1:ese db2inst1/server_t/; fi"
 
 script:
-  - docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50001:50000 angoca/db2-instance:ese
-  - docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst2" -p 50000:50000 angoca/db2-instance:expc ./createInstance db2inst2
-# TODO create instance
+  # Starts Express-C image
+  - bash -c "if [ '$ENV' = 'expc' ]; then docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50001:50000 angoca/db2-instance:ese; fi"
+  # Starts Enterprise Server Edition image
+  - bash -c "if [ '$ENV' = 'ese' ]; then docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst2" -p 50000:50000 angoca/db2-instance:expc; fi"
+
   - docker ps -a
+
+  # Starts the instance and creates a database.
+  - docker exec $(docker ps -a -q) su -c ". ~db2inst1/sqllib/db2profile ; db2start" db2inst1
+  - docker exec $(docker ps -a -q) su -c ". ~db2inst1/sqllib/db2profile ; db2 create db test" db2inst1
+  - docker exec $(docker ps -a -q) su -c ". ~db2inst1/sqllib/db2profile ; db2 connect to test" db2inst1
 
 
