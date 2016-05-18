@@ -17,7 +17,7 @@ ENV DB2_CONF /tmp/db2_conf
 
 WORKDIR /tmp/db2_conf
 
-EXEC /tmp/db2_conf/${DB2_INST_CREA_SCR}
+RUN /tmp/db2_conf/${DB2_INST_CREA_SCR}
 
 EXPOSE 50000
 
