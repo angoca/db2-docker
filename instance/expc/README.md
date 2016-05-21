@@ -1,7 +1,7 @@
 # Supported tags and respective `Dockerfile` links
 
- * [`instance-expc`, `latest` (instance/expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/instance/expc/Dockerfile)
- * [`instance-ese` (instance/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/instance/server_t/Dockerfile)
+ * [`expc`, `latest` (instance/expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/instance/expc/Dockerfile)
+ * [`ese` (instance/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/instance/server_t/Dockerfile)
 
 # What is DB2?
 
@@ -13,7 +13,7 @@ Historically and unlike other database vendors, IBM produced a platform-specific
  * [DB2 LUW](http://www.ibm.com/analytics/us/en/technology/db2/)
  * [DB2 Express-C](http://www.ibm.com/software/data/db2/express-c/download.html)
 
-![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/install/expc/logo.png)
+![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/instance/expc/logo.png)
 
 ## What is a DB2 instance?
 

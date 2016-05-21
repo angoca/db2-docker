@@ -21,9 +21,9 @@ script:
   - docker images
 
   # Starts Express-C image
-  - bash -c "if [ '$ENV' = 'expc' ]; then docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50001:50000 angoca/db2inst1:ese; fi"
+  - bash -c "if [ '$ENV' = 'expc' ]; then docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50001:50000 angoca/db2inst1:expc; fi"
   # Starts Enterprise Server Edition image
-  - bash -c "if [ '$ENV' = 'ese' ]; then docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst2" -p 50000:50000 angoca/db2inst1:expc; fi"
+  - bash -c "if [ '$ENV' = 'ese' ]; then docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst2" -p 50000:50000 angoca/db2inst1:ese; fi"
 
   - docker ps -a
 
