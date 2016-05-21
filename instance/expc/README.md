@@ -44,12 +44,12 @@ This is the stack of images:
 
 This image will prepare the environment to create a DB2 instance. It uses the [`angoca/db2-install`](https://registry.hub.docker.com/u/angoca/db2-install/) image that installs DB2.
 
-Once the installation was done, this image could be loaded. This image will populate the previous image with some scripts to ease the instance creation. The process follows the instructions of a response file. The instance by default is `db2inst1` listening on port 50000 installed in the `/home/db2inst1i` directory.
+Once the installation was done, this image could be loaded. This image will populate the previous image with some scripts to ease the instance creation. The script that creates the instance follows the instructions of a response file. The instance by default is `db2inst1` listening on port 50000 installed in the `/home/db2inst1` directory.
 
 The process is performed in two steps:
 
- * First, the image is filled with the necessary scripts (build).
- * Second, the image creates the instance interactively (run).
+ * First, the image is provided with the necessary scripts (build).
+ * Second, in the image, a DB2 instance can be created interactively (run).
 
 Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
