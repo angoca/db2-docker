@@ -1,6 +1,6 @@
 # This Docker creates a db2instance
 #
-# Version: 2016-05-16
+# Version: 2016-09-28
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
 
@@ -18,7 +18,7 @@ LABEL org.label-schema.build-date=${BUILD_DATE} \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/angoca/db2-docker" \
       org.label-schema.vendor="AngocA" \
-      org.label-schema.version="1.0-11.1-expc" \
+      org.label-schema.version="1.0-11.1-instance-expc" \
       org.label-schema.schema-version="1.0"
 
 # Set of variables to define the type of DB2 being installed.
@@ -40,5 +40,4 @@ WORKDIR /home/db2inst1
 
 #ENTRYPOINT ["db2"]
 #CMD ["?"]
-
 
