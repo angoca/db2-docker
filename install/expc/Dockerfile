@@ -12,12 +12,25 @@ FROM ubuntu:14.04
 
 MAINTAINER Andres Gomez <angoca@yahoo.com>
 
+# MicroBadge
+ARG VCS_REF
+
+LABEL org.label-schema.build-date=${BUILD_DATE} \
+      org.label-schema.name="db2-docker" \
+      org.label-schema.description="Docker container for IBM DB2 for LUW" \
+      org.label-schema.url="https://github.com/angoca/db2-docker/wiki" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/angoca/db2-docker" \
+      org.label-schema.vendor="AngocA" \
+      org.label-schema.version="1.0-11.1-instance-expc" \
+      org.label-schema.schema-version="1.0"
+
 # Set of variables to define the type of DB2 being installed.
 
 ## Version of the downloaded file.
-ENV DB2_VERSION 10.5
+ENV DB2_VERSION 11.1
 ## Fixpack of the downloaded file.
-ENV DB2_FIXPACK 7
+ENV DB2_FIXPACK GA
 ## Name of the downloaded file.
 ENV DB2_INSTALLER v${DB2_VERSION}_linuxx64_expc.tar.gz
 ## Directory of the installers. Associated to the edition.
