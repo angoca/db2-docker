@@ -18,7 +18,7 @@ MAINTAINER Andres Gomez <angoca@yahoo.com>
 ## Version of the downloaded file.
 ENV DB2_VERSION 10.5
 ## Fixpack of the downloaded file.
-ENV DB2_FIXPACK 7
+ENV DB2_FIXPACK 8
 ## Name of the downloaded file.
 ENV DB2_INSTALLER v${DB2_VERSION}fp${DB2_FIXPACK}_linuxx64_server_t.tar.gz
 ## Directory of the installers. Associated to the edition.
