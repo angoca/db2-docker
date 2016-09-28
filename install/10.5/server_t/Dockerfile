@@ -5,7 +5,7 @@
 # from it. The fixpack is from the server binaries that correspond to the
 # Enterprise Server Edition for 90 days if a license is not applied.
 #
-# Version: 2016-05-15
+# Version: 2016-09-28
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
 
