@@ -9,10 +9,13 @@ FROM angoca/db2-instance:expc
 MAINTAINER Andres Gomez <angoca@yahoo.com>
 
 # MicroBadge
+ARG VCS_REF
+
 LABEL org.label-schema.build-date=${BUILD_DATE} \
       org.label-schema.name="db2-docker" \
       org.label-schema.description="Docker container for IBM DB2 for LUW" \
       org.label-schema.url="https://github.com/angoca/db2-docker/wiki" \
+      org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/angoca/db2-docker" \
       org.label-schema.vendor="AngocA" \
       org.label-schema.version="1.0-11.1-expc" \
