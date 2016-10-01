@@ -58,6 +58,7 @@ RUN dpkg --add-architecture i386 && \
     libaio1 \
     libpam-ldap:i386 \
     libstdc++6-4.4-pic \
+    numactl \
     lib32stdc++6 && \
 # Download the installer.
 ## URL to download the installer. The link is obtained from an article in the Wiki
