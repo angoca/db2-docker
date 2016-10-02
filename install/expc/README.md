@@ -1,7 +1,7 @@
 # Supported tags and respective `Dockerfile` links
 
  * [`expc`, `latest` (install/expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/expc/Dockerfile)
- * [`11.1-ese`, `ese` (install/11.1/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/11.1/server_t/Dockerfile)
+ * [`10.5-ese`, `ese` (install/10.5/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/10.5/server_t/Dockerfile)
 
 # What is DB2?
 
@@ -52,7 +52,13 @@ For the DB2 installation, a provided response file is used. You can clone this r
 
 DB2 will be installed in the container in:
 
+For Express-C:
+
     /opt/ibm/db2/V11.1
+
+For ESE:
+
+    /opt/ibm/db2/V10.5
 
 Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
