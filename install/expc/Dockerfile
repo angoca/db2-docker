@@ -4,13 +4,9 @@
 # This Docker is designed to download the DB2 free edition from IBM and to
 # install DB2 from it. This edition does not requieres a license.
 #
-# Version: 2016-05-15
+# Version: 2018-01-25
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
-
-sudo: required
-dist: trusty
-group: deprecated-2017Q4
 
 FROM ubuntu:14.04
 
