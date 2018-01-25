@@ -66,25 +66,25 @@ RUN dpkg --add-architecture i386 && \
 ## https://github.com/angoca/db2-docker/wiki/db2-link-expc
 ## That article should contain a valid link as the last line.
 ## If the link is not valid, you can modify the wiki.
-  echo "Downloading..." && \
+  echo ">>>Downloading..." && \
   /tmp/${DB2_DOWNLOAD} && \
 # Extract the installer and delete the tar file.
-  echo "Extracting..." && \
+  echo ">>>Extracting..." && \
   cd /tmp && \
   tar -zvxf ${DB2_INSTALLER} && \
   rm ${DB2_INSTALLER} && \
 # Install DB2 and remove the installer.
-  echo "Checking prereqs..." && \
+  echo ">>>Checking prereqs..." && \
   cd /tmp/${DB2_INST_DIR} && \
-  ./db2prereqcheck -l && \
-  echo "Installing..." && \
+###  ./db2prereqcheck -l && \
+  echo ">>>Installing..." && \
   ( ./db2setup -r /tmp/${DB2_RESP_FILE} && \
-  echo "Showing installation log..." && \
+  echo ">>>Showing installation log..." && \
   cat /tmp/db2setup.log || cat /tmp/db2setup.log ) && \
-  echo "Validating installation..." && \
+  echo ">>>Validating installation..." && \
   ${DB2_DIR}/bin/db2val -o && \
   cd && \
-  echo "Removing files..." && \
+  echo ">>>Removing files..." && \
   rm -Rf /tmp/${DB2_INST_DIR} && \
   rm /tmp/${DB2_RESP_FILE} && \
 # Removes the cache of apt-get and the unnecessary packages.
