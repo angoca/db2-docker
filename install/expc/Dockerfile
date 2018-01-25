@@ -59,8 +59,8 @@ RUN dpkg --add-architecture i386 && \
     libpam-ldap:i386 \
     libstdc++6-4.4-pic \
     numactl \
-    lib32stdc++6 && \
-    rpm \
+    lib32stdc++6 \
+    rpm && \
 # Download the installer.
 ## URL to download the installer. The link is obtained from an article in the Wiki
 ## https://github.com/angoca/db2-docker/wiki/db2-link-expc
