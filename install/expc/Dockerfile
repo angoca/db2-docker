@@ -48,6 +48,9 @@ COPY ${DB2_DOWNLOAD} /tmp/${DB2_DOWNLOAD}
 # Copies the response file
 COPY ${DB2_RESP_FILE} /tmp/${DB2_RESP_FILE}
 
+# TODO Temporal - ToDelete
+COPY v11.1_linuxx64_expc.tar.gz /tmp/${DB2_INSTALLER}
+
 # Run all commands in a single RUN layer to minimize the size of the image.
 # Updates Linux. Includes i386
 RUN dpkg --add-architecture i386 && \
@@ -67,19 +70,17 @@ RUN dpkg --add-architecture i386 && \
 ## That article should contain a valid link as the last line.
 ## If the link is not valid, you can modify the wiki.
   echo ">>>Downloading..." && \
-  /tmp/${DB2_DOWNLOAD} && \
+# TODO Temporal - ToDelete
+#  /tmp/${DB2_DOWNLOAD} && \
 # Extract the installer and delete the tar file.
   echo ">>>Extracting..." && \
   cd /tmp && \
   tar -zvxf ${DB2_INSTALLER} && \
   rm ${DB2_INSTALLER} && \
 # Install DB2 and remove the installer.
-  echo ">>>Checking prereqs..." && \
-  cd /tmp/${DB2_INST_DIR} && \
-###  ./db2prereqcheck -l && \
   echo ">>>Installing..." && \
+  cd /tmp/${DB2_INST_DIR} && \
   ( ./db2setup -r /tmp/${DB2_RESP_FILE} && \
-  echo ">>>Showing installation log..." && \
   cat /tmp/db2setup.log || cat /tmp/db2setup.log ) && \
   echo ">>>Validating installation..." && \
   ${DB2_DIR}/bin/db2val -o && \
