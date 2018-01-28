@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Helper to create an instance, start it and change to it.
+# This script could receive a parameter for the instance name.
+#
+# Version: 2018-01-28
+# Author: Andres Gomez Casanova (AngocA)
+# Made in COLOMBIA.
+
+RESP_FILE=db2expc_instance.rsp
+
+# Checks if a parameter is given
+INSTANCE_NAME=$1
+if [ -z ${INSTANCE_NAME} ] ; then
+  INSTANCE_NAME=db2inst1
+else
+  sed -i .bak 's/db2inst1/${INSTANCE_NAME}/g' ${RESP_FILE}
+fi
+
+cat ${RESP_FILE}
+
+set -v
+
+# Creates the instance according to the response file.
+${DB2_DIR}/instance/db2isetup -r ${DB2_CONF}/${RESP_FILE}
+
