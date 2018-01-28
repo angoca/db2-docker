@@ -15,36 +15,39 @@ Historically and unlike other database vendors, IBM produced a platform-specific
 
 ![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/install/expc/logo.png)
 
+## What is a DB2 instance?
+
+A DB2 instance is a running process that controls the security at the higher level, listens on a specific port, controls the databases it hosts, and many other operations related to database administration.
+
 # Set of images
 
 This image is part of a set of images to create your DB2 environment:
 
- * [db2-install: Downloads and installs DB2/](https://registry.hub.docker.com/u/angoca/db2-install/)
- * [db2-instance: Configures the environment to create an instance](https://registry.hub.docker.com/u/angoca/db2-instance/)
- * [db2inst1: Instance db2inst1 created (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2inst1/)
+ * [db2-install: Downloads and installs DB2](https://registry.hub.docker.com/u/angoca/db2-install/)
+ * [db2-db2inst1: Instance db2inst1 created](https://registry.hub.docker.com/u/angoca/db2-db2inst1/)
  * [db2-sample: Database sample created (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2-sample/)
 
 This is the stack of images:
 
-    +----------------+
-    |   db2-sample   |  <-- Sample database (db2sampl)
-    +----------------+
-    |    db2inst1    |  <-- Default instance created (db2inst1:50000)
-    +----------------+
-    |  db2-instance  |  <-- Environment to create an instance
-    +----------------+
-    |   db2-install  |  <-- DB2 Express-C installed
-    +----------------+
+    +-----------------+
+    | 3) db2-sample   |  <-- Sample database (db2sampl)
+    +-----------------+
+    | 2) db2-db2inst1 |  <-- Default instance created (db2inst1:50000)
+    +-----------------+
+    | 1) db2-install  |  <-- DB2 Express-C installed
+    +-----------------+
 
 # How to use this image
 
+This image has two parts: the installation of Db2, and the preparation for the instance creation.
+
+## Instalation
+
 This image will download and install DB2 LUW Express-C, but it will not create an instance nor a database.
 
-NOTE: The [GitHub repository](https://github.com/angoca/db2-docker) has another Docker file that installs [DB2 Enterprise Server Edition](https://github.com/angoca/db2-docker/tree/master/install/10.5/server_t) from the most recent fixpack; however, this installation requires a valid license after 90 days of usage. For this reason, this container is not published in the Hub.
+NOTE: The [GitHub repository](https://github.com/angoca/db2-docker) has another Docker file that installs [DB2 Enterprise Server Edition](https://github.com/angoca/db2-docker/tree/master/install/10.5/server_t) from the most recent fixpack; however, this installation requires a valid license after 90 days of usage. For this reason, this container is not published in the Docker Hub.
 
-In order to configure the DB2 environment, you can use the image [angoca/db2-instance](https://registry.hub.docker.com/u/angoca/db2-instance/) or you can create yourself the instance (`db2icrt`) and the database (`db2 create db sample`).
-
-The installer is obtained direclty from IBM; however, this link is temporal. If the link is not longer valid, you just need to modify a page of the [Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc), by providing a new valid link. The instructions are in the same page, just visit:
+The installer is obtained direclty from IBM; however, this link is temporal. If the link is not longer valid, you just need to modify a page of the [Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc), by providing a new valid link. You just need to modify the link, by replacing the last line of the wiki. The instructions are in the same page, just visit:
 
  * [DB2 download link page in wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc)
 
@@ -62,13 +65,96 @@ For ESE:
 
 Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
-## Next steps
+## Instance creation
 
-You will probably use the default instance `db2inst1` listening on port 50000. You can use the `angoca/db2-instance` in order to prepare the environment for an instance with these characteristics.
+This image has a set scripts to ease the instance creation. The script that creates the instance follows the instructions of a response file. The instance by default is `db2inst1` listening on port 50000 installed in the `/home/db2inst1` directory.
 
- * [`angoca/db2-instance`](https://registry.hub.docker.com/u/angoca/db2-instance/)
+Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
-If you want to configure the environment by yourself, you can run the container and execute the commands to create the instance (`db2icrt`), the database (`db2 create db xxx`), the security (`useradd`) and the other stuff.
+## Build
+
+The build process can be done via a `pull` or directly from the sources via `build`. This will create the image that will be ready to run.
+
+Pull from Docker:
+
+    sudo docker pull angoca/db2-install:latest
+
+Build from sources
+
+    git clone https://github.com/angoca/db2-docker.git
+    sudo docker build install/expc
+
+## Run
+
+The execution of a new container should be done in privilege mode, interactive with a seudo TTY. For example:
+
+    sudo docker run -i -t --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2-install
+
+The name of the container will be `db2inst1`.
+
+You can try the following line in order to not use privileged mode:
+
+    sudo docker run -i -t --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="db2inst1" -p 50000:50000 angoca/db2-install
+
+Once the container is running, the console is active under the `/tmp/db2_conf` directory. In this directory you will find a DB2 response file and a script to create an instance. The DB2 response file is configured to create a DB2 instance called `db2inst1` listening on port `50000`. If you want to change these or other properties, you just need to modify the response file or call the createInstance script with another username, for example:
+
+    ./createInstance
+
+Or for a specific instance name
+
+    ./createInstance myinst
+
+It will run `db2isetup`, and then you can change to the instance user and start the instance. Once there, you can create the database, or perform other configuration changes.
+
+Once you have finished the configuration, you can leave the container running by typing:
+
+    Ctrl + P + Q
+
+## Local file system
+
+If you want to have an independent execution environment, a shared storage, you can mount a local directory in the images. It is recommended that you mount the `/home` directory and create all instances under this structure. This will store the home directories of the instances in the host, instead of in the containers.
+
+    /home <-- /db2 locally in the host
+      /db2inst1 <-- Home directory for instance db2inst1
+      /db2inst2 <-- Home directory for instance db2inst2
+
+The previous distribution works only if you create different instance users across all containers. (It is not necessary to have one instance per container, but different instances across all containers when using host storage.)
+
+It is very important that you mount this file system before creating the instance.
+
+    sudo mkdir /db2
+    sudo docker run -i -t --privileged=true --name="db2inst1" -p 50000:50000 -v /db2:/home angoca/db2-instance
+
+NOTE: If you use automatic storage in DB2, and the database creation does not specify any path, the data will be also stored under `/home`. Instead, if you specify specific paths for your containers, make sure where they are stored (in the containers or in the host via mount).
+
+## Daemon
+
+Once the instance has been created, you can run the DB2 instance as a Docker daemon.
+
+    sudo docker start
+
+Once the container with DB2 is running, it can be used to create, populate, manipulate and perform other activities with databases.
+
+If you want to access the console, you need to do an attach to the container
+
+    sudo attach db2inst1
+
+# Acknowledgements
+
+The design of this image is based on the following DB2-Docker images:
+
+ * [grange74/docker-db2](https://github.com/grange74/docker-db2) - https://registry.hub.docker.com/u/grange74/db2/
+ * [bryantsai/db2-docker](https://github.com/bryantsai/db2-docker)
+ * [jeffbonhag/db2-docker](https://github.com/jeffbonhag/db2-docker)
+ * [miraitechno/db2](https://github.com/miraitechno/docker-db2) - https://registry.hub.docker.com/u/miraitechno/db2/
+ * https://registry.hub.docker.com/u/zongqiang/db2v10.5expc/
+ * [IBM IM C3ofC - DB2](https://github.com/IMC3ofC/db2express-c.docker)
+ * [https://hub.jazz.net/project/cbmcgee/rtcdocker/overview](https://hub.jazz.net/project/cbmcgee/rtcdocker/overview#https://hub.jazz.net/project/cbmcgee/rtcdocker/cbmcgee%2520%257C%2520rtcdocker/_7MYIkF4LEeSi-OIwg-tlIA/_7Mut4F4LEeSi-OIwg-tlIA/db2/db/Dockerfile) Chris McGee
+
+And the posts of the following blogs:
+
+ * [DB2 on Docker](https://bryantsai.com/db2-on-docker/)
+ * [db2indocker](http://db2indocker.blogspot.com.co/)
 
 # Advantages of these images
 
@@ -81,8 +167,7 @@ The advantages to use this image instead of the other are:
  * The images can be found by performing a search in Docker. This allows to have a better visibility.
  * It was developed by a DB2 DBA. This makes this image appropriate not only for developers but also for DBAs and SysAdmins.
  * The complete installation and configuration is divided in different images. This makes the solution more flexible and easy to extent.
- * There is documentation. This is very important for new users to understand the structure of the
-   images.
+ * There is documentation. This is very important for new users to understand the structure of the images.
 
 # User Feedback
 
