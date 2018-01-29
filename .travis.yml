@@ -1,6 +1,6 @@
 env:
-  #- ENV=expc
-  #- ENV=ese-10.5
+  - ENV=expc
+  - ENV=ese-10.5
   - ENV=ese-11.1
 
 sudo: required
@@ -25,22 +25,22 @@ script:
   - DB2USER=db2inst1
 
   # Starts Express-C image
-  - bash -c "if [ '$ENV' = 'expc' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start\" | docker run -i --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:expc ; fi"
+  - bash -c "if [ '$ENV' = 'expc' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start ; db2sampl ; db2 connect to sample \" | docker run -i --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:expc ; fi"
   # Starts Enterprise Server Edition image
-  - bash -c "if [ '$ENV' = 'ese-10.5' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start\" | docker run -i --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:ese-10.5 ; fi"
-  - bash -c "if [ '$ENV' = 'ese-11.1' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start\" | docker run -i --ipc="host" --privileged=true --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:ese-11.1 ; fi"
+  - bash -c "if [ '$ENV' = 'ese-10.5' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start ; db2 create db test ; db2 connect to test \" | docker run -i --ipc="host" --privileged=true --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:ese-10.5 ; fi"
+  - bash -c "if [ '$ENV' = 'ese-11.1' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start ; db2 create db test ; db2 connect to test \" | docker run -i --ipc="host" --privileged=true --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:ese-11.1 ; fi"
 
   - docker ps -a
 
   # Starts the instance and creates a database.
   - docker start $(docker ps -a -q)
-  - docker exec -u ${DB2USER} $(docker ps -a -q) ". ~${DB2USER}/sqllib/db2profile ; db2start"
-  - docker exec -u ${DB2USER} $(docker ps -a -q) ". ~${DB2USER}/sqllib/db2profile ; db2 create db test"
-  - docker exec -u ${DB2USER} $(docker ps -a -q) ". ~${DB2USER}/sqllib/db2profile ; db2 connect to test"
+  #- docker exec -u ${DB2USER} $(docker ps -a -q) ". ~${DB2USER}/sqllib/db2profile ; db2start"
+  #- docker exec -u ${DB2USER} $(docker ps -a -q) ". ~${DB2USER}/sqllib/db2profile ; db2 create db test"
+  #- docker exec -u ${DB2USER} $(docker ps -a -q) ". ~${DB2USER}/sqllib/db2profile ; db2 connect to test"
 
 # Logs into Docker
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+  - if [ "$TRAVIS_BRANCH" == "master" ] ; then
+      docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}" ;
     fi
 
