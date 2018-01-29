@@ -1,7 +1,7 @@
 env:
   - ENV=expc
-  - ENV=ese-10.5
-  - ENV=ese-11.1
+  - ENV=ese10.5
+  - ENV=ese11.1
 
 sudo: required
 
@@ -13,11 +13,11 @@ before_install:
   - bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2-install:expc db2-install/expc/; fi"
   - bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2-db2inst1:expc db2-db2inst1/expc/; fi"
   # Builds Enterprise Server Edition image for V10.5
-  - bash -c "if [ '$ENV' = 'ese-10.5' ]; then docker build -t angoca/db2-install:ese db2-install/10.5/server_t/; fi"
-  - bash -c "if [ '$ENV' = 'ese-10.5' ]; then docker build -t angoca/db2-db2inst1:ese db2-db2inst1/10.5/server_t/; fi"
+  - bash -c "if [ '$ENV' = 'ese10.5' ]; then docker build -t angoca/db2-install:ese db2-install/10.5/server_t/; fi"
+  - bash -c "if [ '$ENV' = 'ese10.5' ]; then docker build -t angoca/db2-db2inst1:ese db2-db2inst1/10.5/server_t/; fi"
   # Builds Enterprise Server Edition image for V11.1
-  - bash -c "if [ '$ENV' = 'ese-11.1' ]; then docker build -t angoca/db2-install:ese db2-install/11.1/server_t/; fi"
-  - bash -c "if [ '$ENV' = 'ese-11.1' ]; then docker build -t angoca/db2-db2inst1:ese db2-db2inst1/11.1/server_t/; fi"
+  - bash -c "if [ '$ENV' = 'ese11.1' ]; then docker build -t angoca/db2-install:ese db2-install/11.1/server_t/; fi"
+  - bash -c "if [ '$ENV' = 'ese11.1' ]; then docker build -t angoca/db2-db2inst1:ese db2-db2inst1/11.1/server_t/; fi"
 
 script:
   - docker images
@@ -25,8 +25,8 @@ script:
   # Starts Express-C image
   - bash -c "if [ '$ENV' = 'expc' ]; then echo \". /home/db2inst1/sqllib/db2profile;db2start\" | docker run -i --ipc="host" --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2-db2inst1:expc ; fi"
   # Starts Enterprise Server Edition image
-  - bash -c "if [ '$ENV' = 'ese-10.5' ]; then echo \". /home/db2inst1/sqllib/db2profile;db2start\" | docker run -i --ipc="host" --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2inst1:ese-10.5 ; fi"
-  - bash -c "if [ '$ENV' = 'ese-11.1' ]; then echo \". /home/db2inst1/sqllib/db2profile;db2start\" | docker run -i --ipc="host" --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2inst1:ese-11.1 ; fi"
+  - bash -c "if [ '$ENV' = 'ese10.5' ]; then echo \". /home/db2inst1/sqllib/db2profile;db2start\" | docker run -i --ipc="host" --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2inst1:ese-10.5 ; fi"
+  - bash -c "if [ '$ENV' = 'ese11.1' ]; then echo \". /home/db2inst1/sqllib/db2profile;db2start\" | docker run -i --ipc="host" --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2inst1:ese-11.1 ; fi"
 
   - docker ps -a
 
