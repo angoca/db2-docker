@@ -28,7 +28,7 @@ script:
   - bash -c "if [ '$ENV' = 'expc' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start\" | docker run -i --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:expc ; fi"
   # Starts Enterprise Server Edition image
   - bash -c "if [ '$ENV' = 'ese-10.5' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start\" | docker run -i --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:ese-10.5 ; fi"
-  - bash -c "if [ '$ENV' = 'ese-11.1' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start\" | docker run -i --ipc="host" --cap-add IPC_LOCK --cap-add IPC_OWNER --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:ese-11.1 ; fi"
+  - bash -c "if [ '$ENV' = 'ese-11.1' ] ; then echo \". /home/${DB2USER}/sqllib/db2profile ; db2start\" | docker run -i --ipc="host" --privileged=true --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:ese-11.1 ; fi"
 
   - docker ps -a
 
