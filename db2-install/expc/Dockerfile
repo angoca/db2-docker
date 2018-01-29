@@ -78,6 +78,7 @@ RUN echo "DB2_VERSION=${DB2_VERSION}" && \
 ## That article should contain a valid link as the last line.
 ## If the link is not valid, you can modify the wiki.
   echo ">>>Downloading..." && \
+  /tmp/${DB2_DOWNLOAD} && \
 # Extract the installer and delete the tar file.
   echo ">>>Extracting..." && \
   cd /tmp && \
