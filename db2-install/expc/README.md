@@ -25,8 +25,11 @@ A DB2 instance is a running process that controls the security at the higher lev
 This image is part of a set of images to create your DB2 environment:
 
  * [db2-install: Downloads and installs DB2](https://registry.hub.docker.com/u/angoca/db2-install/)
+   * [![](https://images.microbadger.com/badges/image/angoca/db2-install.svg)](https://microbadger.com/images/angoca/db2-install "Get your own version badge on microbadger.com")
  * [db2-db2inst1: Instance db2inst1 created](https://registry.hub.docker.com/u/angoca/db2-db2inst1/)
+   * [![](https://images.microbadger.com/badges/image/angoca/db2-db2inst1.svg)](https://microbadger.com/images/angoca/db2-db2inst1 "Get your own image badge on microbadger.com")
  * [db2-sample: Database sample created (Without Dockerfile)](https://registry.hub.docker.com/u/angoca/db2-sample/)
+   * [![](https://images.microbadger.com/badges/image/angoca/db2-sample.svg)](https://microbadger.com/images/angoca/db2-sample "Get your own version badge on microbadger.com")
 
 This is the stack of images:
 
