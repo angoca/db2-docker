@@ -9,7 +9,7 @@
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
 
-LINK=$(curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link-server_t-10.5.md -s | tail -1)
+LINK=$(curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link-server_t-11.1.md -s | tail -1)
 # Download the installer.
 cd /tmp
 echo ${LINK}
