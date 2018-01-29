@@ -1,12 +1,10 @@
-ENV=expc
-
 # Builds Express-C image
-bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2-install:expc db2-install/expc/; fi"
-bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2-db2inst1:expc db2-db2inst1/expc/; fi"
+docker build -t angoca/db2-install:expc db2-install/expc/
+docker build -t angoca/db2-db2inst1:expc db2-db2inst1/expc/
 docker images
 
 # Starts Express-C image
-bash -c "if [ '$ENV' = 'expc' ]; then echo \". /home/db2inst1/sqllib/db2profile;db2start\" | docker run -i --ipc="host" --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2-db2inst1:expc ; fi"
+echo ". /home/db2inst1/sqllib/db2profile;db2start" | docker run -i --ipc="host" --privileged=true --name="db2inst1" -p 50000:50000 angoca/db2-db2inst1:expc 
 
 docker ps -a
 
