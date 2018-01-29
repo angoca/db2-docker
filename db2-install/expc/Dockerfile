@@ -42,7 +42,7 @@ ENV DB2_VERSION=11.1 \
 ## Directory for all scripts.
     DB2_CONF=/tmp/db2_conf
 ## Name of the downloaded file.
-ENV DB2_INSTALLER=v${DB2_VERSION}_linuxx64_expc.tar.gz \
+ENV DB2_INSTALLER=v${DB2_VERSION}_linuxx64_${DB2_INST_DIR}.tar.gz \
 ## Directory where DB2 is installed.
     DB2_DIR=/opt/ibm/db2/V${DB2_VERSION}
 
