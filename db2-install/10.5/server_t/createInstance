@@ -3,7 +3,7 @@
 # Helper to create an instance, start it and change to it.
 # This script could receive a parameter for the instance name.
 #
-# Version: 2016-05-15
+# Version: 2018-01-29
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
 
@@ -15,6 +15,9 @@ else
   sed -i .bak 's/db2inst1/${INSTANCE_NAME}/g' ${DB2_RESP_FILE} 
 fi
 
+cat ${DB2_RESP_FILE}
+
 # Creates the instance according to the response file.
+echo "Creating instance..."
 ${DB2_DIR}/instance/db2isetup -r ${DB2_CONF}/${DB2_RESP_FILE}
 
