@@ -12,8 +12,8 @@ before_install:
   - bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2-install:expc db2-install/expc/; fi"
   - bash -c "if [ '$ENV' = 'expc' ]; then docker build -t angoca/db2-db2inst1:expc db2-db2inst1/expc/; fi"
   # Builds Enterprise Server Edition image
-  - bash -c "if [ '$ENV' = 'ese' ]; then docker build -t angoca/db2-install:ese install/10.5/server_t/; fi"
-  - bash -c "if [ '$ENV' = 'ese' ]; then docker build -t angoca/db2inst1:ese db2inst1/server_t/; fi"
+  - bash -c "if [ '$ENV' = 'ese' ]; then docker build -t angoca/db2-install:ese db2-install/10.5/server_t/; fi"
+  - bash -c "if [ '$ENV' = 'ese' ]; then docker build -t angoca/db2-db2inst1:ese db2-db2inst1/server_t/; fi"
 
 script:
   - docker images
@@ -31,4 +31,10 @@ script:
   - docker exec $(docker ps -a -q) su -c ". ~db2inst1/sqllib/db2profile ; db2 create db test" db2inst1
   - docker exec $(docker ps -a -q) su -c ". ~db2inst1/sqllib/db2profile ; db2 connect to test" db2inst1
 
+  # Logs into Docker
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+      docker push USER/REPO;
+    fi
 
