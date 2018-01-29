@@ -4,7 +4,7 @@
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
 
-FROM angoca/db2-instance:ese-11.1
+FROM angoca/db2-install:ese-11.1
 
 LABEL maintainer="angoca@yahoo.com" 
 
