@@ -56,7 +56,7 @@ RUN dpkg --add-architecture i386 && \
     lib32stdc++6 && \
 # Download the installer.
 ## URL to download the installer. The link is obtained from an article in the Wiki
-## https://github.com/angoca/db2-docker/wiki/db2-link-server_t
+## https://github.com/angoca/db2-docker/wiki/db2-link-server_t-10.5
 ## That article should contain a valid link as the last line.
 ## If the link is not valid, you can modify the wiki.
   /tmp/${DB2_DOWNLOAD} && \
