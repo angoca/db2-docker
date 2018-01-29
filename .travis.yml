@@ -1,6 +1,6 @@
 env:
-  - ENV=expc
-  - ENV=ese-10.5
+  #- ENV=expc
+  #- ENV=ese-10.5
   - ENV=ese-11.1
 
 sudo: required
