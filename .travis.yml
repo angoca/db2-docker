@@ -2,7 +2,6 @@ env:
   - ENV=expc
   - ENV=ese-10.5
   - ENV=ese-11.1
-  - DB2USER=db2inst1
 
 sudo: required
 
@@ -32,7 +31,7 @@ script:
   - docker ps -a
 
   # Starts the instance and creates a database.
-  - docker start $(docker ps -a -q)
+  - docker start $(docker ps -a -q) ; DB2USER=db2inst1
   - docker exec -u ${DB2USER} $(docker ps -a -q) ". ~db2inst1/sqllib/db2profile ; db2start"
   - docker exec -u ${DB2USER} $(docker ps -a -q) ". ~db2inst1/sqllib/db2profile ; db2 create db test"
   - docker exec -u ${DB2USER} $(docker ps -a -q) ". ~db2inst1/sqllib/db2profile ; db2 connect to test"
