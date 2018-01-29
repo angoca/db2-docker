@@ -1,17 +1,16 @@
 # This Docker creates a db2instance
 #
-# Version: 2016-09-28
+# Version: 2018-01-28
 # Author: Andres Gomez Casanova (AngocA)
 # Made in COLOMBIA.
 
-FROM angoca/db2-instance:expc
-
-MAINTAINER Andres Gomez <angoca@yahoo.com>
+FROM angoca/db2-install:expc
 
 # MicroBadge
 ARG VCS_REF
 
-LABEL org.label-schema.build-date=${BUILD_DATE} \
+LABEL maintainer="angoca@yahoo.com" \
+      org.label-schema.build-date=${BUILD_DATE} \
       org.label-schema.name="db2-docker" \
       org.label-schema.description="Docker container for IBM DB2 for LUW" \
       org.label-schema.url="https://github.com/angoca/db2-docker/wiki" \
@@ -24,20 +23,23 @@ LABEL org.label-schema.build-date=${BUILD_DATE} \
 # Set of variables to define the type of DB2 being installed.
 
 ## Script to create the instance
-ENV DB2_INST_CREA_SCR createInstance
+ENV DB2_INST_CREA_SCR=createInstance \
 ## Directory for all scripts.
-ENV DB2_CONF /tmp/db2_conf
+    DB2_CONF=/tmp/db2_conf \
+## Port number for Db2
+    PORT=50000 \
+## Default instance name
+    DEFAULT_INSTANCE_NAME=db2inst1
 
-WORKDIR /tmp/db2_conf
+WORKDIR ${DB2_CONF}
 
-RUN /tmp/db2_conf/${DB2_INST_CREA_SCR}
+ARG INSTANCE_NAME=${DEFAULT_INSTANCE_NAME}
 
-EXPOSE 50000
+RUN ${DB2_CONF}/${DB2_INST_CREA_SCR} ${INSTANCE_NAME}
 
-USER db2inst1
+USER ${INSTANCE_NAME}
 
-WORKDIR /home/db2inst1
+WORKDIR /home/${INSTANCE_NAME}
 
-#ENTRYPOINT ["db2"]
-#CMD ["?"]
+EXPOSE ${PORT}
 
