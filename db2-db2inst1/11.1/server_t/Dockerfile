@@ -27,10 +27,10 @@ ARG INSTANCE_NAME=${DEFAULT_INSTANCE_NAME}
 
 RUN ${DB2_CONF}/${DB2_INST_CREA_SCR} ${INSTANCE_NAME}
 # Modifies the db2nodes file to include a valid name.
-RUN ls -l ~${INSTANCE_NAME}
-RUN ls -l ~${INSTANCE_NAME}/sqllib
-RUN cat ~${INSTANCE_NAME}/sqllib/db2nodes.cfg
-RUN  echo "0 localhost 0" > ~${INSTANCE_NAME}/sqllib/db2nodes.cfg
+RUN ls -l /home/${INSTANCE_NAME}
+RUN ls -l /home/${INSTANCE_NAME}/sqllib
+RUN cat /home/${INSTANCE_NAME}/sqllib/db2nodes.cfg
+RUN echo "0 localhost 0" > /home/${INSTANCE_NAME}/sqllib/db2nodes.cfg
 
 USER ${INSTANCE_NAME}
 
