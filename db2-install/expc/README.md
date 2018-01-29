@@ -1,10 +1,10 @@
-# Supported tags and respective `Dockerfile` links
+## Supported tags and respective `Dockerfile` links
 
  * [`expc`, `latest` (db2-install/expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/expc/Dockerfile)
  * [`11.1-ese`, `ese` (db2-install/11.1/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/db2-install/11.1/server_t/Dockerfile)
  * [`10.5-ese` (db2-install/10.5/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/db2-install/10.5/server_t/Dockerfile)
 
-# What is DB2?
+## What is DB2?
 
 IBM DB2 is a family of database server products developed by IBM. These products all support the relational model, but in recent years some products have been extended to support object-relational features and non-relational structures, in particular XML.
 
@@ -16,11 +16,11 @@ Historically and unlike other database vendors, IBM produced a platform-specific
 
 ![DB2 logo](https://raw.githubusercontent.com/angoca/db2-docker/master/db2-install/expc/logo.png)
 
-## What is a DB2 instance?
+# What is a DB2 instance?
 
 A DB2 instance is a running process that controls the security at the higher level, listens on a specific port, controls the databases it hosts, and many other operations related to database administration.
 
-# Set of images
+## Set of images
 
 This image is part of a set of images to create your DB2 environment:
 
@@ -38,19 +38,21 @@ This is the stack of images:
     | 1) db2-install  |  <-- DB2 Express-C installed
     +-----------------+
 
-# How to use this image
+## How to use this image
 
 This image has two parts: the installation of Db2, and the preparation for the instance creation.
 
-## Instalation
+# Instalation
 
 This image will download and install DB2 LUW Express-C, but it will not create an instance nor a database.
 
-NOTE: The [GitHub repository](https://github.com/angoca/db2-docker) has another Docker file that installs [DB2 Enterprise Server Edition](https://github.com/angoca/db2-docker/tree/master/install/10.5/server_t) from the most recent fixpack; however, this installation requires a valid license after 90 days of usage. For this reason, this container is not published in the Docker Hub.
+NOTE: The [GitHub repository](https://github.com/angoca/db2-docker) has another Docker file that installs [DB2 Enterprise Server Edition](https://github.com/angoca/db2-docker/tree/master/db2-install/11.1/server_t) from the most recent fixpack; however, this installation requires a valid license after 90 days of usage. For this reason, this container is not published in the Docker Hub.
 
 The installer is obtained direclty from IBM; however, this link is temporal. If the link is not longer valid, you just need to modify a page of the [Wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc), by providing a new valid link. You just need to modify the link, by replacing the last line of the wiki. The instructions are in the same page, just visit:
 
- * [DB2 download link page in wiki](https://github.com/angoca/db2-docker/wiki/db2-link-expc)
+ * [DB2 download link page in wiki Expc - 11.1](https://github.com/angoca/db2-docker/wiki/db2-link-expc)
+ * [DB2 download link page in wiki ESE - 11.1](https://github.com/angoca/db2-docker/wiki/db2-link-server_t-11.1)
+ * [DB2 download link page in wiki ESE - 10.5](https://github.com/angoca/db2-docker/wiki/db2-link-server_t-10.5)
 
 For the DB2 installation, a provided response file is used. You can clone this repository and modify the response file for your own needs.
 
@@ -62,17 +64,18 @@ For Express-C:
 
 For ESE:
 
+    /opt/ibm/db2/V11.1
     /opt/ibm/db2/V10.5
 
 Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
-## Instance creation
+# Instance creation
 
 This image has a set scripts to ease the instance creation. The script that creates the instance follows the instructions of a response file. The instance by default is `db2inst1` listening on port 50000 installed in the `/home/db2inst1` directory.
 
 Please, check the [Travis-CI execution](https://travis-ci.org/angoca/db2-docker) to see how this image is build.
 
-## Build
+# Build
 
 The build process can be done via a `pull` or directly from the sources via `build`. This will create the image that will be ready to run.
 
@@ -85,7 +88,7 @@ Build from sources
     git clone https://github.com/angoca/db2-docker.git
     sudo docker build install/expc
 
-## Run
+# Run
 
 The execution of a new container should be done in privilege mode, interactive with a seudo TTY. For example:
 
@@ -111,7 +114,7 @@ Once you have finished the configuration, you can leave the container running by
 
     Ctrl + P + Q
 
-## Local file system
+# Local file system
 
 If you want to have an independent execution environment, a shared storage, you can mount a local directory in the images. It is recommended that you mount the `/home` directory and create all instances under this structure. This will store the home directories of the instances in the host, instead of in the containers.
 
@@ -128,7 +131,7 @@ It is very important that you mount this file system before creating the instanc
 
 NOTE: If you use automatic storage in DB2, and the database creation does not specify any path, the data will be also stored under `/home`. Instead, if you specify specific paths for your containers, make sure where they are stored (in the containers or in the host via mount).
 
-## Daemon
+# Daemon
 
 Once the instance has been created, you can run the DB2 instance as a Docker daemon.
 
@@ -140,7 +143,7 @@ If you want to access the console, you need to do an attach to the container
 
     sudo attach db2inst1
 
-# Acknowledgements
+## Acknowledgements
 
 The design of this image is based on the following DB2-Docker images:
 
@@ -157,7 +160,7 @@ And the posts of the following blogs:
  * [DB2 on Docker](https://bryantsai.com/db2-on-docker/)
  * [db2indocker](http://db2indocker.blogspot.com.co/)
 
-# Advantages of these images
+## Advantages of these images
 
 The advantages to use this image instead of the other are:
 
@@ -170,15 +173,15 @@ The advantages to use this image instead of the other are:
  * The complete installation and configuration is divided in different images. This makes the solution more flexible and easy to extent.
  * There is documentation. This is very important for new users to understand the structure of the images.
 
-# User Feedback
+## User Feedback
 
-## Issues
+# Issues
 
 If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/angoca/db2-dockers/issues).
 
 You can also reach the mainteiner via Twitter [@angoca](https://twitter.com/angoca).
 
-## Contributing
+# Contributing
 
 You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
 
