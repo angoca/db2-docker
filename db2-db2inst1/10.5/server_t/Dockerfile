@@ -11,9 +11,11 @@ MAINTAINER Andres Gomez <angoca@yahoo.com>
 # Set of variables to define the type of DB2 being installed.
 
 ## Script to create the instance
-ENV DB2_INST_CREA_SCR createInstance
+ENV DB2_INST_CREA_SCR=createInstance \
 ## Directory for all scripts.
-ENV DB2_CONF /tmp/db2_conf
+    DB2_CONF=/tmp/db2_conf  \
+## Response file name
+    DB2_RESP_FILE=db2server_t_instance.rsp
 
 WORKDIR /tmp/db2_conf
 
