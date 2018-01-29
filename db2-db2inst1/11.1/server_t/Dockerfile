@@ -14,6 +14,8 @@ LABEL maintainer="angoca@yahoo.com"
 ENV DB2_INST_CREA_SCR=createInstance \
 ## Directory for all scripts.
     DB2_CONF=/tmp/db2_conf \
+## Response file name
+    DB2_RESP_FILE=db2server_t_instance.rsp \
 ## Port number for Db2
     PORT=50000 \
 ## Default instance name
