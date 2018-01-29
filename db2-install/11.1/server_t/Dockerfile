@@ -30,7 +30,7 @@ LABEL maintainer="angoca@yahoo.com" \
 ## Version of the downloaded file.
 ENV DB2_VERSION=11.1 \
 ## Mod of the downloaded file.
-    DB2_MOD=2
+    DB2_MOD=2 \
 ## Fixpack of the downloaded file.
     DB2_FIXPACK=2b \
 ## Directory of the installers. Associated to the edition.
