@@ -164,13 +164,15 @@ And the posts of the following blogs:
 
 The advantages to use this image instead of the other are:
 
- * The DB2 binary file is download semi-automatically. Just the wiki has to have the valid link. The other images requiere to modify the image with a valid link or to have DB2 installer/binaries locally in the machine.
+ * The DB2 binary file is downloaded semi-automatically. The wiki has a valid link and this is the only thing that needs to be modified. The other images requiere to modify the image with a valid link or to have DB2 installer/binaries locally in the machine.
  * This image has a mechanism to create more instances with a simple script that uses a response file. The instance owner can have any name; it is not limited to `db2inst1` or something like `db2instX` where X is a number.
  * The environment can be configured in different ways. It is not limited to a fixed instance or database. The set of images provide different levels of flexible configuration.
- * The images are published in Docker in the `angoca` repository. The image is not created on the fly. The basic images are created from Dockerfiles, the other were published in the repository with the instance or database already created. As part of the publish, a corresponding documentation is provided.
+ * The images are published in Docker in the `angoca` repository. The image is not created on the fly. The basic images are created from Dockerfiles, the last one was published in the repository with the database already created. As part of the publish, a corresponding documentation is provided.
  * The images can be found by performing a search in Docker. This allows to have a better visibility.
  * It was developed by a DB2 DBA. This makes this image appropriate not only for developers but also for DBAs and SysAdmins.
  * The complete installation and configuration is divided in different images. This makes the solution more flexible and easy to extent.
+ * The image tries to be based on recent versions. For example one of the last fixpacks in Db2 v10.5, and the most recent fixpack in v11.1. Also, a recent version of Linux Ubuntu is used; for v11.1 is used Ubuntu 16.04.
+ * This image is based on a Linux distribution supported by IBM, which is Ubunut. CentOs is not supported.
  * There is documentation. This is very important for new users to understand the structure of the images.
 
 ## User Feedback
