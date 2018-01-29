@@ -1,6 +1,6 @@
 ## Supported tags and respective `Dockerfile` links
 
- * [`expc`, `latest` (db2-install/expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/install/expc/Dockerfile)
+ * [`expc`, `latest` (db2-install/expc/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/db2-install/expc/Dockerfile)
  * [`11.1-ese`, `ese` (db2-install/11.1/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/db2-install/11.1/server_t/Dockerfile)
  * [`10.5-ese` (db2-install/10.5/server_t/Dockerfile)](https://github.com/angoca/db2-docker/blob/master/db2-install/10.5/server_t/Dockerfile)
 
@@ -174,7 +174,7 @@ The advantages to use this image instead of the other are:
  * The images can be found by performing a search in Docker. This allows to have a better visibility.
  * It was developed by a DB2 DBA. This makes this image appropriate not only for developers but also for DBAs and SysAdmins.
  * The complete installation and configuration is divided in different images. This makes the solution more flexible and easy to extent.
- * The image tries to be based on recent versions. For example one of the last fixpacks in Db2 v10.5, and the most recent fixpack in v11.1. Also, a recent version of Linux Ubuntu is used; for v11.1 is used Ubuntu 16.04.
+ * The image are based on recent versions. For example one of the last fixpacks in Db2 v10.5, and the most recent fixpack in v11.1. Also, a recent version of Linux Ubuntu is used; for v11.1 is used Ubuntu 16.04.
  * This image is based on a Linux distribution supported by IBM, which is Ubunut. CentOs is not supported.
  * There is documentation. This is very important for new users to understand the structure of the images.
 
