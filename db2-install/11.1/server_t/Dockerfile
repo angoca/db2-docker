@@ -21,7 +21,7 @@ LABEL maintainer="angoca@yahoo.com" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/angoca/db2-docker" \
       org.label-schema.vendor="AngocA" \
-      org.label-schema.version="1.0-11.1-install-expc" \
+      org.label-schema.version="1.0-11.1-install-ese" \
       org.label-schema.schema-version="1.0" \
       org.label-schema.docker.cmd="sudo docker run -i -t --privileged=true angoca/db2-install"
 
@@ -78,7 +78,7 @@ RUN echo "DB2_VERSION=${DB2_VERSION}" && \
     libpam0g:i386 && \
 # Download the installer.
 ## URL to download the installer. The link is obtained from an article in the Wiki
-## https://github.com/angoca/db2-docker/wiki/db2-link-expc
+## https://github.com/angoca/db2-docker/wiki/db2-link-server_t-11.1
 ## That article should contain a valid link as the last line.
 ## If the link is not valid, you can modify the wiki.
   echo ">>>Downloading..." && \
