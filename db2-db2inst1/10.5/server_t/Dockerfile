@@ -21,7 +21,9 @@ WORKDIR /tmp/db2_conf
 
 RUN /tmp/db2_conf/${DB2_INST_CREA_SCR} && \
 # Modifies the db2nodes file to include a valid name.
-  echo "0 localhost 0" > ~${INSTANCE_NAME}/sqllib/db2nodes.cfg
+  cat /home/${INSTANCE_NAME}/sqllib/db2nodes.cfg && \
+  echo "0 localhost 0" > /home/${INSTANCE_NAME}/sqllib/db2nodes.cfg && \
+  cat /home/${INSTANCE_NAME}/sqllib/db2nodes.cfg
 
 EXPOSE 50000
 
