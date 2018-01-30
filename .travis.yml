@@ -42,7 +42,7 @@ script:
     fi
   # Starts Enterprise Server Edition image
   - if [ ${ENV} = 'ese-10.5' ] || [ ${ENV} = 'ese-11.1' ] ; then
-      echo ". /home/${DB2USER}/sqllib/db2profile ; db2start ; db2 create db test ; db2 connect to test ; cat /home/${DB2USER}/sqllib/db2dump/db2diag.log " | docker run -i --ipc="host" --privileged=true --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:ese-10.5 ;
+      echo ". /home/${DB2USER}/sqllib/db2profile ; db2start ; db2 create db test ; db2 connect to test ; cat /home/${DB2USER}/sqllib/db2dump/db2diag.log " | docker run -i --ipc="host" --privileged=true --name="${DB2USER}" -p 50000:50000 angoca/db2-db2inst1:${ENV} ;
     fi
 
   # Starts the instance and creates a database.
