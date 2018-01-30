@@ -15,7 +15,9 @@ ENV DB2_INST_CREA_SCR=createInstance \
 ## Directory for all scripts.
     DB2_CONF=/tmp/db2_conf  \
 ## Response file name
-    DB2_RESP_FILE=db2server_t_instance.rsp
+    DB2_RESP_FILE=db2server_t_instance.rsp \
+## Default instance name
+    INSTANCE_NAME=db2inst1
 
 WORKDIR /tmp/db2_conf
 
