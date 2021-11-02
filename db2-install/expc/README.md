@@ -45,7 +45,7 @@ This is the stack of images:
 
 This image has two parts: the installation of Db2, and the preparation for the instance creation.
 
-# Instalation
+# Installation
 
 This image will download and install DB2 LUW Express-C, but it will not create an instance nor a database.
 
