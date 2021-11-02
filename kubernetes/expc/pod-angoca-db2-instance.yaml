@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db2-instance
+  labels:
+    tier: db2-database
+spec:
+  volumes:
+    - name: db2-data-dir
+      hostPath:
+        path: /data/pv0001/
+  containers:
+  - name: db2-instance
+    image: angoca/db2-instance:expc
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo hello; sleep 10;done"]
+    ports:
+      - containerPort: 50000
+    volumeMounts:
+      - mountPath: /home
+        name: db2-data-dir
+    securityContext:
+      privileged: true
